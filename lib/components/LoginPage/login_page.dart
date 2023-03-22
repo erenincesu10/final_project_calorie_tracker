@@ -27,6 +27,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        centerTitle: true,
         title: Text(
           "Login",
           style: TextStyle(
@@ -35,86 +36,86 @@ class _LoginPageState extends State<LoginPage> {
         backgroundColor: Colors.white,
         elevation: 0,
       ),
-      body: SafeArea(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          SizedBox(
-            height: 60,
-          ),
-          Lottie.asset('assets/lottie/yemekanimasyon.json',
-              width: 300, height: 200),
-          SizedBox(
-            height: 120,
-          ),
-          Column(
-            children: [
-              SizedBox(
-                height: 10,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 35, left: 35),
-                child: TextField(
-                  controller: _emailController,
-                  decoration: InputDecoration(
-                      hintText: "Email Giriniz",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20))),
-                ),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 35, left: 35),
-                child: TextField(
-                  controller: _passwordController,
-                  obscureText: true,
-                  obscuringCharacter: "#",
-                  decoration: InputDecoration(
-                      hintText: "Parola Giriniz",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20))),
-                ),
-              )
-            ],
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.8,
-            height: MediaQuery.of(context).size.height * 0.05,
-            child: OutlinedButton(
-              onPressed: () {
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => HomePage()));
-              },
-              child: Text(
-                "Login",
-                style: TextStyle(color: Colors.white),
-              ),
-              style: OutlinedButton.styleFrom(
-                  backgroundColor: Colors.green[800], shape: StadiumBorder()),
+      body: SingleChildScrollView(
+        child: SafeArea(
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: 60,
             ),
-          ),
-          Column(
-            children: [
-              SizedBox(
-                height: 150,
-              ),
-              TextButton(
-                onPressed: () {},
-                child: Text(
-                  "Don't have an account? SignUp",
-                  style: TextStyle(
-                      color: Colors.blue, fontWeight: FontWeight.bold),
+            Lottie.asset('assets/lottie/yemekanimasyon.json',
+                width: 300, height: 200),
+            SizedBox(
+              height: 90,
+            ),
+            Column(
+              children: [
+                
+                Padding(
+                  padding: const EdgeInsets.only(right: 35, left: 35),
+                  child: TextFormField(
+                    controller: _emailController,
+                    decoration: InputDecoration(
+                        labelText: "Email Giriniz",
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20))),
+                  ),
                 ),
+                SizedBox(
+                  height: 35,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 35, left: 35),
+                  child: TextFormField(
+                    controller: _passwordController,
+                    obscureText: true,
+                    obscuringCharacter: "#",
+                    decoration: InputDecoration(
+                        labelText: "Parola Giriniz",
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20))),
+                  ),
+                )
+              ],
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.8,
+              height: MediaQuery.of(context).size.height * 0.05,
+              child: OutlinedButton(
+                onPressed: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => HomePage()));
+                },
+                child: Text(
+                  "Login",
+                  style: TextStyle(color: Colors.white),
+                ),
+                style: OutlinedButton.styleFrom(
+                    backgroundColor: Colors.green[800], shape: StadiumBorder()),
               ),
-            ],
-          ),
-        ],
-      )),
+            ),
+            Column(
+              children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.1,
+                ),
+                TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    "Don't have an account? SignUp",
+                    style: TextStyle(
+                        color: Colors.blue, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        )),
+      ),
     );
   }
 }
