@@ -1,4 +1,4 @@
-import 'package:calorie_tracker/components/home_page.dart';
+import 'package:calorie_tracker/components/HomePage/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
