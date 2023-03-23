@@ -1,8 +1,8 @@
 import 'dart:ffi';
 
-import 'package:calorie_tracker/view/HomePage/breakfast_page.dart';
-import 'package:calorie_tracker/view/HomePage/dinner_card.dart';
-import 'package:calorie_tracker/view/HomePage/lunch_card.dart';
+import 'package:calorie_tracker/components/HomePage/breakfast_page.dart';
+import 'package:calorie_tracker/components/HomePage/dinner_card.dart';
+import 'package:calorie_tracker/components/HomePage/lunch_card.dart';
 import 'package:calorie_tracker/view/ProfilePage/profile_page.dart';
 import 'package:calorie_tracker/view/SearchPage/search_page.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
