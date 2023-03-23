@@ -1,6 +1,6 @@
 import 'dart:ffi';
 
-import 'package:calorie_tracker/view/SplashScreen/SearchPage/search_page.dart';
+import 'package:calorie_tracker/view/SearchPage/search_page.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,14 +8,13 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
-import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    double value = 2000;
+    double value = 1500;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
