@@ -2,6 +2,7 @@ import 'package:calorie_tracker/components/SplashScreen/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
+import 'components/HomePage/home_page.dart';
 import 'components/LoginPage/login_page.dart';
 
 void main() async {
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(),
-      home: SplashScreen(),
+      home: HomePage(),
     );
   }
 }
