@@ -1,3 +1,4 @@
+import 'package:calorie_tracker/components/HomePage/dropdown_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -76,7 +77,11 @@ class _BreakFastCardState extends State<BreakFastCard> {
                             style: TextStyle(color: Colors.white),
                           ),
                           onPressed: () {
-                            print("object");
+                            print("tıklandı");
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DropDown()));
                           },
                         ),
                       ),
