@@ -51,7 +51,6 @@ class _LoginPageState extends State<LoginPage> {
             ),
             Column(
               children: [
-                
                 Padding(
                   padding: const EdgeInsets.only(right: 35, left: 35),
                   child: TextFormField(
