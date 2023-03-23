@@ -1,6 +1,6 @@
 import 'dart:ffi';
 
-import 'package:calorie_tracker/view/SplashScreen/SearchPage/search_page.dart';
+import 'package:calorie_tracker/view/SearchPage/search_page.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
