@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-import '../HomePage/home_page.dart';
+import '../../components/HomePage/home_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
