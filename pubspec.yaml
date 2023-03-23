@@ -70,6 +70,9 @@ flutter:
   assets:
     - assets/lottie/yemekanimasyon.json
     - assets/images/splashscreenkcal.jpeg
+    - assets/images/breakfast.png
+    - assets/images/dinner.png
+    - assets/images/lunch.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
