@@ -98,13 +98,6 @@ class HomePage extends StatelessWidget {
           ),
           IconButton(
             icon: Icon(
-              Icons.add,
-              color: Colors.white,
-            ),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(
               Icons.person,
               color: Colors.white,
             ),
