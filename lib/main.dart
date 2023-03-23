@@ -1,3 +1,4 @@
+import 'package:calorie_tracker/components/ProfilePage/profile_page.dart';
 import 'package:calorie_tracker/view/SplashScreen/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
