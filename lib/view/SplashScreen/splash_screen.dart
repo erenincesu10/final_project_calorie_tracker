@@ -1,9 +1,10 @@
-import 'package:calorie_tracker/components/LoginPage/login_page.dart';
+import 'package:calorie_tracker/view/LoginPage/login_page.dart';
+import 'package:calorie_tracker/view/SearchPage/search_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-import '../../components/HomePage/home_page.dart';
+import '../HomePage/home_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -18,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Future.delayed(const Duration(seconds: 3)).then((value) {
       Navigator.of(context).pushReplacement(
-          CupertinoPageRoute(builder: (ctx) => const LoginPage()));
+          CupertinoPageRoute(builder: (ctx) => const SearchPage()));
     });
   }
 

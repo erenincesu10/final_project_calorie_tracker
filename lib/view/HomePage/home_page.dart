@@ -1,9 +1,9 @@
 import 'dart:ffi';
 
-import 'package:calorie_tracker/components/HomePage/breakfast_page.dart';
-import 'package:calorie_tracker/components/HomePage/dinner_card.dart';
-import 'package:calorie_tracker/components/HomePage/lunch_card.dart';
-import 'package:calorie_tracker/components/ProfilePage/profile_page.dart';
+import 'package:calorie_tracker/view/HomePage/breakfast_page.dart';
+import 'package:calorie_tracker/view/HomePage/dinner_card.dart';
+import 'package:calorie_tracker/view/HomePage/lunch_card.dart';
+import 'package:calorie_tracker/view/ProfilePage/profile_page.dart';
 import 'package:calorie_tracker/view/SearchPage/search_page.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,7 +12,6 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
-import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -25,7 +24,7 @@ class _HomePageState extends State<HomePage> {
   int _index = 0;
   @override
   Widget build(BuildContext context) {
-    double value = 2000;
+    double value = 1500;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
