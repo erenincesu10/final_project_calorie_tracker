@@ -1,7 +1,10 @@
 import 'package:calorie_tracker/view/DinnerPage/dinner_page.dart';
+import 'package:calorie_tracker/view_model/food_view_model.dart';
+import 'package:calorie_tracker/view_model/user_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:provider/provider.dart';
 
 import '../../view/SearchPage/search_page.dart';
 
@@ -49,7 +52,7 @@ class _DinnerCardState extends State<DinnerCard> {
                 ),
                 Text(
                   //providerdan data gelicek
-                  dinner.toString(),
+                                   "Calorie : ${context.watch<FoodViewModel>().getDinnerCalorie.toString()}",
                   style: TextStyle(
                     fontSize: 10,
                     color: Color.fromARGB(255, 0, 0, 0),
@@ -81,11 +84,14 @@ class _DinnerCardState extends State<DinnerCard> {
                             "View Dinner",
                             style: TextStyle(color: Colors.white),
                           ),
-                          onPressed: () {
+                          onPressed: () async{
+                            await context.read<FoodViewModel>().setFoods(context.read<UserViewModel>().getCurrentUserId!,"Dinner");
+                            List? foods = context.read<FoodViewModel>().getFoodList;
+                    
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => DinnerPageView()));
+                                    builder: (context) => DinnerPageView(foods: foods!,)));
                           },
                         ),
                       ),
