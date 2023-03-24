@@ -206,6 +206,12 @@ class _SearchPageState extends State<SearchPage> {
                                               actions: [
                                                 TextButton(
                                                     onPressed: () {
+                                                      services.getDailyFood(
+                                                          context
+                                                              .read<
+                                                                  UserViewModel>()
+                                                              .getCurrentUserId!,
+                                                          "Kahvalti");
                                                       Navigator.pop(
                                                           context, 'Cancel');
                                                     },
