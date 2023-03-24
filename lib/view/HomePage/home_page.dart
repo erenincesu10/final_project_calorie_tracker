@@ -1,8 +1,8 @@
 import 'dart:ffi';
 
-import 'package:calorie_tracker/view/HomePage/breakfast_page.dart';
-import 'package:calorie_tracker/view/HomePage/dinner_card.dart';
-import 'package:calorie_tracker/view/HomePage/lunch_card.dart';
+import 'package:calorie_tracker/components/HomePage/breakfast_page.dart';
+import 'package:calorie_tracker/components/HomePage/dinner_card.dart';
+import 'package:calorie_tracker/components/HomePage/lunch_card.dart';
 import 'package:calorie_tracker/view/ProfilePage/profile_page.dart';
 import 'package:calorie_tracker/view/SearchPage/search_page.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(60),
                     bottomRight: Radius.circular(60)),
-                color: Color.fromARGB(255, 226, 100, 50)),
+                color: Color.fromARGB(255, 255, 139, 93)),
             child: SafeArea(
               child: Center(
                 child: Column(
@@ -106,16 +106,11 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Colors.white,
         index: 0,
-        color: Color.fromARGB(255, 226, 100, 50),
+        color: Color.fromARGB(255, 255, 139, 93),
         animationDuration: Duration(microseconds: 200),
         onTap: (i) {
           setState(() {
             _index = i;
-            if (_index == 0) {
-              return;
-            } else
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ProfilPage()));
           });
         },
         items: [

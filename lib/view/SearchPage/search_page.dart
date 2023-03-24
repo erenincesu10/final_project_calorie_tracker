@@ -13,7 +13,10 @@ class SearchPage extends StatefulWidget {
   State<SearchPage> createState() => _SearchPageState();
 }
 
+List<String> list = ["davut", "babuz"];
+
 class _SearchPageState extends State<SearchPage> {
+  var dropdownValue = list.first;
   Services services = Services();
   TextEditingController _searchController = TextEditingController();
   @override
@@ -46,7 +49,7 @@ class _SearchPageState extends State<SearchPage> {
               height: 60,
               width: MediaQuery.of(context).size.width,
               color: Colors.white,
-              child: Flexible(
+              child: Expanded(
                 flex: 1,
                 child: TextField(
                   controller: _searchController,
@@ -82,100 +85,102 @@ class _SearchPageState extends State<SearchPage> {
             Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * 0.5,
-                    child: context.watch<FoodViewModel>().getList.isEmpty
-                        ? Container(
-                            width: MediaQuery.of(context).size.width * 0.4,
-                            height: 50,
-                            child: Center(child: Text("Food not found!")))
-                        : Container(
-                            padding: EdgeInsets.all(6),
-                            margin: EdgeInsets.all(100),
-                            alignment: Alignment.center,
-                            width: MediaQuery.of(context).size.width * 0.4,
-                            height: 200,
-                            decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                    colors: [Colors.green, Colors.blue],
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight),
-                                border: Border.all(width: 5),
-                                borderRadius: BorderRadius.circular(12)),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                    "${context.watch<FoodViewModel>().getList[0]!.name} (100g)"),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(context
-                                    .watch<FoodViewModel>()
-                                    .getList[0]!
-                                    .calories
-                                    .toString()),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        Text("Fat"),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Text(context
-                                            .watch<FoodViewModel>()
-                                            .getList[0]!
-                                            .fat_total_g
-                                            .toString()),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        Text("Protein"),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Text(context
-                                            .watch<FoodViewModel>()
-                                            .getList[0]!
-                                            .protein_g
-                                            .toString()),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        Text("Carbohydrate"),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Text(context
-                                            .watch<FoodViewModel>()
-                                            .getList[0]!
-                                            .carbohydrates_total_g
-                                            .toString()),
-                                      ],
-                                    )
-                                  ],
-                                )
-                              ],
-                            )))),
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * 0.5,
+                  child: context.watch<FoodViewModel>().getList.isEmpty
+                      ? Container(
+                          width: MediaQuery.of(context).size.width * 0.4,
+                          height: 50,
+                          child: Center(child: Text("Food not found!")))
+                      : Container(
+                          padding: EdgeInsets.all(6),
+                          margin: EdgeInsets.all(100),
+                          alignment: Alignment.center,
+                          width: MediaQuery.of(context).size.width * 0.4,
+                          height: 200,
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  colors: [Colors.green, Colors.blue],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight),
+                              border: Border.all(width: 5),
+                              borderRadius: BorderRadius.circular(12)),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                  "${context.watch<FoodViewModel>().getList[0]!.name} (100g)"),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Text(context
+                                  .watch<FoodViewModel>()
+                                  .getList[0]!
+                                  .calories
+                                  .toString()),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Text("Fat"),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      Text(context
+                                          .watch<FoodViewModel>()
+                                          .getList[0]!
+                                          .fat_total_g
+                                          .toString()),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Text("Protein"),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      Text(context
+                                          .watch<FoodViewModel>()
+                                          .getList[0]!
+                                          .protein_g
+                                          .toString()),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Text("Carbohydrate"),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      Text(context
+                                          .watch<FoodViewModel>()
+                                          .getList[0]!
+                                          .carbohydrates_total_g
+                                          .toString()),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                )),
           ],
         ),
       ),

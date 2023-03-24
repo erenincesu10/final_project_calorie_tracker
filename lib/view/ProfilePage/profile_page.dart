@@ -36,108 +36,110 @@ class _ProfilPageState extends State<ProfilPage> {
               size: 30,
             )),
       ),
-      body: Container(
-        child: Center(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 60.0),
-                child: Text(
-                  "Hoşgeldiniz Umut Kaan Kartaloğlu",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                ),
+      body: Center(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 10,
+            ),
+            CircleAvatar(
+              radius: 100,
+              backgroundImage: NetworkImage("https://picsum.photos/200/300"),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 60.0),
+              child: Text(
+                "Hoşgeldiniz Umut Kaan Kartaloğlu",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
-              SizedBox(
-                height: 140,
-              ),
-              Container(
-                width: 400,
-                height: 150,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 5.0),
-                      child: Row(
-                        children: [
-                          Icon(Icons.monitor_weight_rounded),
-                          //değer girilcek
-                          Text("120 kg"),
-                          SizedBox(
-                            width: 100,
-                          ),
-                          Icon(Icons.account_circle_rounded),
-                          //deper girilcek
-                          Text("180 cm"),
-                          SizedBox(
-                            width: 100,
-                          ),
-                          Icon(Icons.ac_unit),
-                          //değer girilcek
-                          Text("23")
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                width: 400,
-                height: 200,
-                decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.black,
-                    ),
-                    borderRadius: BorderRadius.circular(30),
-                    color: Colors.white),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 30.0),
-                      child: Text(
-                        "Today",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Center(
-                      child: CircularPercentIndicator(
-                        radius: 50.0,
-                        lineWidth: 13.0,
-                        animation: true,
-                        percent: 0.5,
-                        center: Text(
-                          "${value.toInt().toString()} Kalori",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 10.0),
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            SizedBox(
+              width: 400,
+              height: 150,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5.0),
+                    child: Row(
+                      children: [
+                        Icon(Icons.monitor_weight_rounded),
+                        //değer girilcek
+                        Text("120 kg"),
+                        SizedBox(
+                          width: 100,
                         ),
-                        circularStrokeCap: CircularStrokeCap.round,
-                        progressColor: Colors.yellow,
-                      ),
+                        Icon(Icons.account_circle_rounded),
+                        //deper girilcek
+                        Text("180 cm"),
+                        SizedBox(
+                          width: 100,
+                        ),
+                        Icon(Icons.ac_unit),
+                        //değer girilcek
+                        Text("23")
+                      ],
                     ),
-                  ],
-                ),
-              )
-            ],
-          ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              width: 400,
+              height: 200,
+              decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black,
+                  ),
+                  borderRadius: BorderRadius.circular(30),
+                  color: Colors.white),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 30.0),
+                    child: Text(
+                      "Today",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Center(
+                    child: CircularPercentIndicator(
+                      radius: 50.0,
+                      lineWidth: 13.0,
+                      animation: true,
+                      percent: 0.5,
+                      center: Text(
+                        "${value.toInt().toString()} Kalori",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 10.0),
+                      ),
+                      circularStrokeCap: CircularStrokeCap.round,
+                      progressColor: Colors.yellow,
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
         ),
       ),
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Colors.white,
         index: _index,
-        color: Color.fromARGB(255, 226, 100, 50),
+        color: Color.fromARGB(255, 255, 139, 93),
         animationDuration: Duration(microseconds: 200),
         onTap: (i) {
           setState(() {
             _index = i;
-            if (_index == 0) {
-              Navigator.pop(context);
-            }
           });
         },
         items: [
