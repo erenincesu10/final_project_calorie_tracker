@@ -1,6 +1,7 @@
 import 'package:calorie_tracker/models/food_model.dart';
 import 'package:calorie_tracker/services/firebase_services.dart';
 import 'package:calorie_tracker/view_model/food_view_model.dart';
+import 'package:calorie_tracker/view_model/user_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -215,6 +216,17 @@ class _SearchPageState extends State<SearchPage> {
                                                     child: Text("Cancel")),
                                                 TextButton(
                                                     onPressed: () {
+                                                      Food? food = context
+                                                          .read<FoodViewModel>()
+                                                          .getList[0];
+                                                      String? id = context
+                                                          .read<UserViewModel>()
+                                                          .getCurrentUserId!;
+                                                      print(food!.toJson());
+                                                      print(id);
+
+                                                      services.addFood(food, id,
+                                                          dropdownValue);
                                                       Navigator.pop(
                                                           context, 'OK');
                                                       //EkleProvider

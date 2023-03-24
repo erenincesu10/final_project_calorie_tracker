@@ -6,6 +6,12 @@ import 'package:calorie_tracker/models/user_model.dart';
 import 'package:http/http.dart' as http;
 
 class Services {
+  String dateTime =
+      "${DateTime.now().day}_${DateTime.now().month}_${DateTime.now().year}";
+
+  Uri getFoodUrl(String localId, date, branch) => Uri.parse(
+      "https://final-project-f8ca2-default-rtdb.europe-west1.firebasedatabase.app/users/$localId/$dateTime/$branch.json");
+
   Uri getUrl(String endpoint) =>
       Uri.parse("https://api.calorieninjas.com/v1/nutrition?query=$endpoint");
   Food? food;
@@ -18,6 +24,21 @@ class Services {
 
   Uri postUserUrl(String endpoint) => Uri.parse(
       "https://final-project-f8ca2-default-rtdb.europe-west1.firebasedatabase.app/users/$endpoint.json");
+
+  Future addFood(Food food, String localId, branch) async {
+    http.Response response = await http.post(
+      getFoodUrl(localId, dateTime, branch),
+      body: food.toJson(),
+      headers: {"Content-type": "application/json"},
+    );
+    print(getFoodUrl(localId, dateTime, branch));
+    if (response.statusCode >= 200 && response.statusCode <= 300) {
+      var data = jsonDecode(response.body);
+      return data;
+    } else {
+      return null;
+    }
+  }
 
   Future<List<Food?>> getFood(String endpoint) async {
     http.Response response = await http.get(
@@ -119,7 +140,6 @@ class Services {
   Future<User?> postUser(User user, String endpoint) async {
     http.Response response = await http.put(postUserUrl(endpoint),
         body: user.toJson(), headers: {'Content-Type': "application/json"});
-
     if (response.statusCode >= 200 && response.statusCode <= 300) {
       var data = response.body;
       print(jsonDecode(data));

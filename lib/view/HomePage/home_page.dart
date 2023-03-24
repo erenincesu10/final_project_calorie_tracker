@@ -1,4 +1,5 @@
 import 'dart:ffi';
+import 'package:calorie_tracker/components/bottom_nav_bar.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:calorie_tracker/components/HomePage/breakfast_page.dart';
 import 'package:calorie_tracker/components/HomePage/dinner_card.dart';
@@ -19,6 +20,7 @@ class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
 }
+
 
 class _HomePageState extends State<HomePage> {
   int _index = 0;
@@ -123,7 +125,7 @@ class _HomePageState extends State<HomePage> {
             if (_index == 0) {
               return;
             } else
-              Navigator.push(context,
+              Navigator.of(context).pushReplacement(
                   MaterialPageRoute(builder: (context) => ProfilPage()));
           });
         },

@@ -1,3 +1,4 @@
+import 'package:calorie_tracker/view/HomePage/home_page.dart';
 import 'package:calorie_tracker/view_model/user_view_model.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -29,15 +30,6 @@ class _ProfilPageState extends State<ProfilPage> {
           style: TextStyle(
               color: Colors.black, fontWeight: FontWeight.bold, fontSize: 30),
         ),
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              Icons.arrow_back_ios_new,
-              color: Colors.black,
-              size: 30,
-            )),
       ),
       // body: Center(
       //   child: Column(
@@ -153,16 +145,16 @@ class _ProfilPageState extends State<ProfilPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Hoş geldin", //${context.watch<UserViewModel>().getUser.name} ${context.watch<UserViewModel>().getUser.lastName}",
+                      "Hoş geldin ${context.watch<UserViewModel>().getUser.name} ${context.watch<UserViewModel>().getUser.lastName}",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
-                    // context.watch<UserViewModel>().getUser.gender == "Erkek"
-                    //     ? Icon(
-                    //         Icons.male,
-                    //         color: Colors.blue,
-                    //       )
-                    //     : Icon(Icons.female, color: Colors.pink)
+                    context.watch<UserViewModel>().getUser.gender == "Erkek"
+                        ? Icon(
+                            Icons.male,
+                            color: Colors.blue,
+                          )
+                        : Icon(Icons.female, color: Colors.pink)
                   ],
                 ),
               ),
@@ -211,12 +203,11 @@ class _ProfilPageState extends State<ProfilPage> {
                             LinearPercentIndicator(
                               width: 100.0,
                               lineHeight: 8.0,
-                              percent: 0.8,
-                              // context
-                              //     .watch<UserViewModel>()
-                              //     .getUser
-                              //     .height!
-                              //     .toDouble(),
+                              percent: context
+                                      .watch<UserViewModel>()
+                                      .getUser
+                                      .height! /
+                                  1000.toDouble(),
                               progressColor: Color.fromRGBO(35, 125, 60, 0.612),
                             ),
                           ],
@@ -271,12 +262,11 @@ class _ProfilPageState extends State<ProfilPage> {
                     Padding(
                       padding: const EdgeInsets.only(top: 30.0),
                       child: Text(
-                        "",
-                        // context
-                        //     .watch<UserViewModel>()
-                        //     .getUser
-                        //     .daily_calorie!
-                        //     .toString(),
+                        context
+                            .watch<UserViewModel>()
+                            .getUser
+                            .daily_calorie!
+                            .toString(),
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
@@ -288,19 +278,9 @@ class _ProfilPageState extends State<ProfilPage> {
                         radius: 50.0,
                         lineWidth: 13.0,
                         animation: true,
-                        percent: 0.2,
-                        // context
-                        //         .watch<UserViewModel>()
-                        //         .getUser
-                        //         .total_calorie!
-                        //         .toInt() /
-                        //     context
-                        //         .watch<UserViewModel>()
-                        //         .getUser
-                        //         .daily_calorie!,
+                        percent: 1,
                         center: Text(
-                          "sadsa",
-                          // "${context.watch<UserViewModel>().getUser.total_calorie!.toInt().toString()} Kalori",
+                          "Kalori",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 10.0),
                         ),
@@ -323,6 +303,11 @@ class _ProfilPageState extends State<ProfilPage> {
         onTap: (i) {
           setState(() {
             _index = i;
+            if (_index == 1) {
+              return;
+            } else
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (context) => HomePage()));
           });
         },
         items: [

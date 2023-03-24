@@ -1,4 +1,4 @@
-
+import 'package:calorie_tracker/view/BreakFastPage/breakfast_page.dart';
 import 'package:calorie_tracker/view/SearchPage/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -10,6 +10,8 @@ class BreakFastCard extends StatefulWidget {
   @override
   State<BreakFastCard> createState() => _BreakFastCardState();
 }
+
+List breakfastproduct = ["asdsa"];
 
 class _BreakFastCardState extends State<BreakFastCard> {
   @override
@@ -44,8 +46,8 @@ class _BreakFastCardState extends State<BreakFastCard> {
                       fontFamily: "Montserrat",
                       fontWeight: FontWeight.bold),
                 ),
-                const Text(
-                  "Reccommended: \n751 cals, 9net carbs",
+                Text(
+                  breakfastproduct.toString(),
                   style: TextStyle(
                     fontSize: 10,
                     color: Color.fromARGB(255, 0, 0, 0),
@@ -74,14 +76,14 @@ class _BreakFastCardState extends State<BreakFastCard> {
                       child: Center(
                         child: TextButton(
                           child: Text(
-                            "+ Add Lunch",
+                            "View Breakfast",
                             style: TextStyle(color: Colors.white),
                           ),
                           onPressed: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => SearchPage()));
+                                    builder: (context) => BreakFastPageView()));
                           },
                         ),
                       ),
