@@ -1,8 +1,10 @@
+import 'package:calorie_tracker/view_model/user_view_model.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:provider/provider.dart';
 
 class ProfilPage extends StatefulWidget {
   const ProfilPage({super.key});
@@ -42,9 +44,21 @@ class _ProfilPageState extends State<ProfilPage> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 60.0),
-                child: Text(
-                  "Hoşgeldiniz Umut Kaan Kartaloğlu",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Hoş geldin ${context.watch<UserViewModel>().getUser.name} ${context.watch<UserViewModel>().getUser.lastName}",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                    context.watch<UserViewModel>().getUser.gender == "Erkek"
+                        ? Icon(
+                            Icons.male,
+                            color: Colors.blue,
+                          )
+                        : Icon(Icons.female, color: Colors.pink)
+                  ],
                 ),
               ),
               SizedBox(
@@ -57,24 +71,37 @@ class _ProfilPageState extends State<ProfilPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 5.0),
+                      padding: const EdgeInsets.only(left: 5.0, right: 5),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(Icons.monitor_weight_rounded),
                           //değer girilcek
-                          Text("120 kg"),
+                          Text(context
+                              .watch<UserViewModel>()
+                              .getUser
+                              .weight
+                              .toString()),
                           SizedBox(
                             width: 100,
                           ),
                           Icon(Icons.account_circle_rounded),
                           //deper girilcek
-                          Text("180 cm"),
+                          Text(context
+                              .watch<UserViewModel>()
+                              .getUser
+                              .height
+                              .toString()),
                           SizedBox(
                             width: 100,
                           ),
                           Icon(Icons.ac_unit),
                           //değer girilcek
-                          Text("23")
+                          Text(context
+                              .watch<UserViewModel>()
+                              .getUser
+                              .age
+                              .toString())
                         ],
                       ),
                     ),
@@ -95,7 +122,11 @@ class _ProfilPageState extends State<ProfilPage> {
                     Padding(
                       padding: const EdgeInsets.only(top: 30.0),
                       child: Text(
-                        "Today",
+                        context
+                            .watch<UserViewModel>()
+                            .getUser
+                            .daily_calorie!
+                            .toString(),
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
@@ -110,9 +141,17 @@ class _ProfilPageState extends State<ProfilPage> {
                         radius: 50.0,
                         lineWidth: 13.0,
                         animation: true,
-                        percent: 0.5,
+                        percent: context
+                                .watch<UserViewModel>()
+                                .getUser
+                                .total_calorie!
+                                .toInt() /
+                            context
+                                .watch<UserViewModel>()
+                                .getUser
+                                .daily_calorie!,
                         center: Text(
-                          "${value.toInt().toString()} Kalori",
+                          "${context.watch<UserViewModel>().getUser.total_calorie!.toInt().toString()} Kalori",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 10.0),
                         ),
