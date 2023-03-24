@@ -23,6 +23,8 @@ class _SearchPageState extends State<SearchPage> {
   TextEditingController _searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -67,7 +69,7 @@ class _SearchPageState extends State<SearchPage> {
                           const TextStyle(color: Colors.grey, fontSize: 18),
                       prefixIcon: Container(
                         padding: const EdgeInsets.all(15),
-                        width: 18,
+                        width: width / 15,
                         child: Icon(Icons.search),
                       ),
                       suffix: TextButton(
@@ -88,8 +90,8 @@ class _SearchPageState extends State<SearchPage> {
             Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height * 0.5,
+                  width: MediaQuery.of(context).size.width * 3.7,
+                  height: MediaQuery.of(context).size.height * 0.7,
                   child: context.watch<FoodViewModel>().getList.isEmpty
                       ? Container(
                           width: MediaQuery.of(context).size.width * 0.4,

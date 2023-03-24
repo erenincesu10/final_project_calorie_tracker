@@ -14,12 +14,14 @@ class LunchCard extends StatefulWidget {
 class _LunchCardState extends State<LunchCard> {
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
-          height: 180,
-          width: 150,
+          height: height / 3,
+          width: width / 3,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             border: Border.all(color: Colors.green),
