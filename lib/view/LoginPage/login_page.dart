@@ -2,10 +2,12 @@ import 'package:calorie_tracker/models/sign_operations.dart';
 import 'package:calorie_tracker/services/firebase_services.dart';
 import 'package:calorie_tracker/view/HomePage/home_page.dart';
 import 'package:calorie_tracker/view/RegisterPage/register_page.dart';
+import 'package:calorie_tracker/view_model/user_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -94,11 +96,18 @@ class _LoginPageState extends State<LoginPage> {
                       password: _passwordController.text,
                       returnToken: true);
                   bool? result = await services.signInBoolean(userInfo);
-                  result == true
-                      ? Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) => HomePage()))
-                      : ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text("Invalid email or password")));
+                  if (result == true) {
+                    String? currentUser = await services.signInTakeId(userInfo);
+                    context
+                        .read<UserViewModel>()
+                        .setCurrentUserId(currentUser!);
+                    context.read<UserViewModel>().setUser();
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => HomePage()));
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text("Invalid email or password")));
+                  }
                 },
                 child: Text(
                   "Login",
