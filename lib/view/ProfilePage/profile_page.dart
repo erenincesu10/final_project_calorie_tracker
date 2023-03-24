@@ -238,17 +238,9 @@ class _ProfilPageState extends State<ProfilPage> {
                         radius: 50.0,
                         lineWidth: 13.0,
                         animation: true,
-                        percent: context
-                                .watch<UserViewModel>()
-                                .getUser
-                                .total_calorie!
-                                .toInt() /
-                            context
-                                .watch<UserViewModel>()
-                                .getUser
-                                .daily_calorie!,
+                        percent: 1,
                         center: Text(
-                          "${context.watch<UserViewModel>().getUser.total_calorie!.toInt().toString()} Kalori",
+                          "Kalori",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 10.0),
                         ),
