@@ -1,6 +1,7 @@
 import 'package:calorie_tracker/models/food_model.dart';
 import 'package:calorie_tracker/models/user_model.dart';
 import 'package:calorie_tracker/services/firebase_services.dart';
+import 'package:calorie_tracker/view/BreakFastPage/breakfast_page.dart';
 import 'package:calorie_tracker/view/SearchPage/search_page.dart';
 import 'package:calorie_tracker/view_model/food_view_model.dart';
 import 'package:calorie_tracker/view_model/user_view_model.dart';
@@ -53,7 +54,7 @@ class _BreakFastCardState extends State<BreakFastCard> {
                       fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  breakfastproduct.toString(),
+                "Calorie : ${context.watch<FoodViewModel>().getBreakfastCalorie.toString()}",
                   style: TextStyle(
                     fontSize: 10,
                     color: Color.fromARGB(255, 0, 0, 0),
@@ -85,11 +86,14 @@ class _BreakFastCardState extends State<BreakFastCard> {
                             "View Breakfast",
                             style: TextStyle(color: Colors.white),
                           ),
-                          onPressed: () {
+                          onPressed: () async{
+                            await context.read<FoodViewModel>().setFoods(context.read<UserViewModel>().getCurrentUserId!,"Breakfast");
+                            List? foods = context.read<FoodViewModel>().getFoodList;
+                            double total = 0;
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => SearchPage()));
+                                    builder: (context) => BreakFastPageView(foods: foods!,)));
                           },
                         ),
                       ),

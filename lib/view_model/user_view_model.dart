@@ -15,6 +15,7 @@ class UserViewModel extends ChangeNotifier {
   String? get getCurrentUserId => _currentUserId;
 
   Services services = Services();
+
   Future<User?> setUser() async {
     _user = await services.getUser(_currentUserId);
     notifyListeners();

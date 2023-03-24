@@ -14,14 +14,13 @@ class SearchPage extends StatefulWidget {
   State<SearchPage> createState() => _SearchPageState();
 }
 
-List<String> list = ["Kahvalti", "Launch", "Dinner"];
-List idler = [];
+
 
 class _SearchPageState extends State<SearchPage> {
-  List<String> list = ["davut", "babuz"];
   var dropdownValue;
   Services services = Services();
   TextEditingController _searchController = TextEditingController();
+  TextEditingController _mealController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -189,26 +188,12 @@ class _SearchPageState extends State<SearchPage> {
                                         context: context,
                                         builder: (BuildContext context) =>
                                             AlertDialog(
-                                              title: Text("Kaç Adet"),
-                                              content: DropdownButton(
-                                                value: dropdownValue,
-                                                icon:
-                                                    Icon(Icons.arrow_drop_down),
-                                                items: list.map<
-                                                        DropdownMenuItem<
-                                                            String>>(
-                                                    (String value) {
-                                                  return DropdownMenuItem<
-                                                      String>(
-                                                    value: value,
-                                                    child: Text(value),
-                                                  );
-                                                }).toList(),
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    dropdownValue = value!;
-                                                  });
-                                                },
+                                              title: Text("Choose Meal"),
+                                              content: TextField(
+                                                controller: _mealController,
+                                                decoration: InputDecoration(
+                                                  hintText: "Breakfast,Lunch,Dinner",
+                                                ),
                                               ),
                                               actions: [
                                                 TextButton(
@@ -227,14 +212,14 @@ class _SearchPageState extends State<SearchPage> {
                                                           .getCurrentUserId!;
                                                       print(food!.toJson());
                                                       print(id);
-                                                      services.addFood(food, id,
-                                                          dropdownValue, idler);
+                                                      services.addFood(food, id,_mealController.text);
+                                                      //     dropdownValue, _mealController.text);
 
                                                       Navigator.pop(
-                                                          context, 'OK');
+                                                          context, 'Add');
                                                       //EkleProvider
                                                     },
-                                                    child: Text("OK"))
+                                                    child: Text("Add"))
                                               ],
                                             ));
                                   },

@@ -1,5 +1,7 @@
 import 'dart:ffi';
 import 'package:calorie_tracker/components/bottom_nav_bar.dart';
+import 'package:calorie_tracker/view_model/food_view_model.dart';
+import 'package:calorie_tracker/view_model/user_view_model.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:calorie_tracker/components/HomePage/breakfast_page.dart';
 import 'package:calorie_tracker/components/HomePage/dinner_card.dart';
@@ -13,6 +15,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -55,7 +58,7 @@ class _HomePageState extends State<HomePage> {
                                           const SearchPage()));
                             },
                             icon: const Icon(
-                              Icons.search,
+                              Icons.add,
                               color: Colors.white,
                               size: 30,
                             )),
@@ -80,9 +83,9 @@ class _HomePageState extends State<HomePage> {
                           radius: 120.0,
                           lineWidth: 20.0,
                           animation: true,
-                          percent: 0.7,
+                          percent: (context.watch<FoodViewModel>().getTotalCalorie)!/context.watch<UserViewModel>().getUser.daily_calorie!,
                           center: Text(
-                            "${value.toInt().toString()} Kalori",
+                            "${context.watch<FoodViewModel>().getTotalCalorie!.round()} Kalori",
                             style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 22.0,

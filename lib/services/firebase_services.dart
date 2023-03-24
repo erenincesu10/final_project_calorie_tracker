@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:calorie_tracker/models/food_model.dart';
 import 'package:calorie_tracker/models/sign_operations.dart';
 import 'package:calorie_tracker/models/user_model.dart';
@@ -15,9 +16,16 @@ class Services {
   Uri getDailyFoodUrl(String localId, date, branch) => Uri.parse(
       "https://final-project-f8ca2-default-rtdb.europe-west1.firebasedatabase.app/users/$localId/$dateTime/$branch/.json");
 
+  Uri deleteDailyFoodUrl(String localId, date, branch,id) => Uri.parse(
+      "https://final-project-f8ca2-default-rtdb.europe-west1.firebasedatabase.app/users/$localId/$dateTime/$branch/$id.json");
+
+
   Uri getUrl(String endpoint) =>
       Uri.parse("https://api.calorieninjas.com/v1/nutrition?query=$endpoint");
   Food? food;
+
+Uri updateFoodId(String localId, date, branch,id) => Uri.parse(
+      "https://final-project-f8ca2-default-rtdb.europe-west1.firebasedatabase.app/users/$localId/$dateTime/$branch/$id.json");
 
   Uri getSignUpUrl() => Uri.parse(
       "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCbnBGI2r23G-i5EXTAtTpVfvLTzGjIhw0");
@@ -28,7 +36,7 @@ class Services {
   Uri postUserUrl(String endpoint) => Uri.parse(
       "https://final-project-f8ca2-default-rtdb.europe-west1.firebasedatabase.app/users/$endpoint.json");
 
-  Future addFood(Food? food, String localId, branch, List idler) async {
+  Future addFood(Food? food, String localId, branch) async {
     http.Response response = await http.post(
       getFoodUrl(localId, dateTime, branch),
       body: food!.toJson(),
@@ -38,22 +46,41 @@ class Services {
     if (response.statusCode >= 200 && response.statusCode <= 300) {
       var data = jsonDecode(response.body);
       food.id = data["name"];
+      http.Response response2 = await http.put(updateFoodId(localId, dateTime, branch,data["name"]),body: food.toJson(),headers: {"Content-type": "application/json"});
       print(food.id);
     } else {
       return null;
     }
   }
 
-  Future getDailyFood(String localId, String branch) async {
+  Future deleteFood(String localId,datetime,branch,foodId) async{
+    http.Response response = await http.delete(deleteDailyFoodUrl( localId,dateTime, branch,foodId),);
+      print(deleteDailyFoodUrl(localId, dateTime, branch, foodId));
+      if (response.statusCode >= 200 && response.statusCode <= 300) {
+      print("successfull");
+    } else {
+      return null;
+    }
+  
+  }
+
+  Future<List?> getDailyFood(String localId, String branch) async {
+    List foods = [];
     http.Response response = await http.get(
       getDailyFoodUrl(localId, dateTime, branch),
       headers: {"Content-type": "application/json"},
     );
     if (response.statusCode >= 200 && response.statusCode <= 300) {
       var data = jsonDecode(response.body);
-      for (var key in data.keys) {
-        print(data[key]);
+      print(data);
+      if(data != null){
+        for (var key in data.keys) {
+        //print(data[key]);
+        foods.add(data[key]);
+      }} else {
+        foods = [];
       }
+      return foods;
     } else {
       return null;
     }
@@ -156,10 +183,11 @@ class Services {
 
     if (response.statusCode >= 200 && response.statusCode <= 300) {
       var data = response.body;
-      print(jsonDecode(data));
-      return User.fromJson(data);
+      //print(jsonDecode(data));
+      print(response.statusCode);
+      //return User.fromJson(data);
     } else {
-      return null;
+      print(response.statusCode);
     }
   }
 }

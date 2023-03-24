@@ -99,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                       returnToken: true);
                   bool? result = await services.signInBoolean(userInfo);
                   if (result == true) {
-                    String? currentUser = await services.signInTakeId(userInfo);
+                    String? currentUser = await services.signIn(userInfo);
                     context
                         .read<UserViewModel>()
                         .setCurrentUserId(currentUser!);
