@@ -155,7 +155,7 @@ class _SearchPageState extends State<SearchPage> {
                                       ],
                                     ),
                                     SizedBox(
-                                      width: 10,
+                                      width: 5,
                                     ),
                                     Column(
                                       mainAxisAlignment:
