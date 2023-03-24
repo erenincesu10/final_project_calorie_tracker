@@ -18,6 +18,7 @@ List<String> list = ["davut", "babuz"];
 class _SearchPageState extends State<SearchPage> {
   var dropdownValue = list.first;
   Services services = Services();
+  // ignore: prefer_final_fields
   TextEditingController _searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class _SearchPageState extends State<SearchPage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text(
+        title: const Text(
           "Menu",
           style: TextStyle(
               color: Colors.black, fontWeight: FontWeight.bold, fontSize: 40),
@@ -34,7 +35,7 @@ class _SearchPageState extends State<SearchPage> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_ios_new,
               color: Colors.black,
               size: 30,
@@ -61,14 +62,15 @@ class _SearchPageState extends State<SearchPage> {
                           borderRadius: BorderRadius.circular(10),
                           borderSide: BorderSide.none),
                       hintText: 'Search',
-                      hintStyle: TextStyle(color: Colors.grey, fontSize: 18),
+                      hintStyle:
+                          const TextStyle(color: Colors.grey, fontSize: 18),
                       prefixIcon: Container(
-                        padding: EdgeInsets.all(15),
-                        child: Icon(Icons.search),
+                        padding: const EdgeInsets.all(15),
                         width: 18,
+                        child: Icon(Icons.search),
                       ),
                       suffix: TextButton(
-                        child: Text(
+                        child: const Text(
                           "Ara",
                           style: TextStyle(color: Colors.black),
                         ),
@@ -99,26 +101,37 @@ class _SearchPageState extends State<SearchPage> {
                             width: MediaQuery.of(context).size.width,
                             height: 200,
                             decoration: BoxDecoration(
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                     colors: [Colors.green, Colors.blue],
                                     begin: Alignment.topLeft,
                                     end: Alignment.bottomRight),
-                                border: Border.all(width: 5),
+                                border: Border.all(
+                                  width: 1,
+                                ),
                                 borderRadius: BorderRadius.circular(12)),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                    "${context.watch<FoodViewModel>().getList[0]!.name} (100g)"),
-                                SizedBox(
+                                  "${context.watch<FoodViewModel>().getList[0]!.name} (100g)",
+                                  style: TextStyle(
+                                      color:
+                                          Color.fromARGB(255, 245, 244, 244)),
+                                ),
+                                const SizedBox(
                                   height: 5,
                                 ),
-                                Text(context
-                                    .watch<FoodViewModel>()
-                                    .getList[0]!
-                                    .calories
-                                    .toString()),
-                                SizedBox(
+                                Text(
+                                  context
+                                      .watch<FoodViewModel>()
+                                      .getList[0]!
+                                      .calories
+                                      .toString(),
+                                  style: TextStyle(
+                                      color:
+                                          Color.fromARGB(255, 245, 244, 244)),
+                                ),
+                                const SizedBox(
                                   height: 5,
                                 ),
                                 Row(
@@ -128,51 +141,91 @@ class _SearchPageState extends State<SearchPage> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
-                                        Text("Fat"),
-                                        SizedBox(
+                                        const Text(
+                                          "Fat",
+                                          style: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 245, 244, 244)),
+                                        ),
+                                        const SizedBox(
                                           height: 5,
                                         ),
-                                        Text(context
-                                            .watch<FoodViewModel>()
-                                            .getList[0]!
-                                            .fat_total_g
-                                            .toString()),
+                                        Text(
+                                          context
+                                              .watch<FoodViewModel>()
+                                              .getList[0]!
+                                              .fat_total_g
+                                              .toString(),
+                                          style: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 245, 244, 244)),
+                                        ),
                                       ],
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
+                                    Container(
+                                        child: Text(
+                                      "--",
+                                      style: TextStyle(color: Colors.white),
+                                    )),
                                     Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
-                                        Text("Protein"),
-                                        SizedBox(
+                                        const Text(
+                                          "Protein",
+                                          style: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 245, 244, 244)),
+                                        ),
+                                        const SizedBox(
                                           height: 5,
                                         ),
-                                        Text(context
-                                            .watch<FoodViewModel>()
-                                            .getList[0]!
-                                            .protein_g
-                                            .toString()),
+                                        Text(
+                                          context
+                                              .watch<FoodViewModel>()
+                                              .getList[0]!
+                                              .protein_g
+                                              .toString(),
+                                          style: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 245, 244, 244)),
+                                        ),
                                       ],
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 5,
                                     ),
+                                    Container(
+                                        child: Text(
+                                      "--",
+                                      style: TextStyle(color: Colors.white),
+                                    )),
                                     Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
-                                        Text("Carbohydrate"),
-                                        SizedBox(
+                                        const Text(
+                                          "Carbohydrate",
+                                          style: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 245, 244, 244)),
+                                        ),
+                                        const SizedBox(
                                           height: 5,
                                         ),
-                                        Text(context
-                                            .watch<FoodViewModel>()
-                                            .getList[0]!
-                                            .carbohydrates_total_g
-                                            .toString()),
+                                        Text(
+                                          context
+                                              .watch<FoodViewModel>()
+                                              .getList[0]!
+                                              .carbohydrates_total_g
+                                              .toString(),
+                                          style: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 245, 244, 244)),
+                                        ),
                                       ],
                                     )
                                   ],

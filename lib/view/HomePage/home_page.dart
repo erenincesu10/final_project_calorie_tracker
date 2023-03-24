@@ -115,7 +115,7 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Color.fromRGBO(248, 245, 228, 1),
         index: 0,
-        color: Color.fromARGB(255, 226, 100, 50),
+        color: Color.fromRGBO(35, 125, 60, 0.612),
         animationDuration: Duration(microseconds: 200),
         onTap: (i) {
           setState(() {
