@@ -177,6 +177,57 @@ class _SearchPageState extends State<SearchPage> {
                                   )
                                 ],
                               ),
+                              SizedBox(
+                                width: 100,
+                                child: OutlinedButton(
+                                  onPressed: () {
+                                    showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) =>
+                                            AlertDialog(
+                                              title: Text("Kaç Adet"),
+                                              content: DropdownButton(
+                                                value: dropdownValue,
+                                                icon:
+                                                    Icon(Icons.arrow_drop_down),
+                                                items: list.map((String items) {
+                                                  return DropdownMenuItem(
+                                                    value: items,
+                                                    child: Text(items),
+                                                  );
+                                                }).toList(),
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    dropdownValue = value!;
+                                                  });
+                                                },
+                                              ),
+                                              actions: [
+                                                TextButton(
+                                                    onPressed: () {
+                                                      Navigator.pop(
+                                                          context, 'Cancel');
+                                                    },
+                                                    child: Text("Cancel")),
+                                                TextButton(
+                                                    onPressed: () {
+                                                      Navigator.pop(
+                                                          context, 'OK');
+                                                      //EkleProvider
+                                                    },
+                                                    child: Text("OK"))
+                                              ],
+                                            ));
+                                  },
+                                  child: Text(
+                                    "Ekle",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  style: OutlinedButton.styleFrom(
+                                      backgroundColor: Colors.green,
+                                      shape: StadiumBorder()),
+                                ),
+                              ),
                             ],
                           ),
                         ),
