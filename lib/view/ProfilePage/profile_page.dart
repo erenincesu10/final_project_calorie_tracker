@@ -1,9 +1,11 @@
+import 'package:calorie_tracker/view/HomePage/home_page.dart';
 import 'package:calorie_tracker/view_model/user_view_model.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 
 class ProfilPage extends StatefulWidget {
@@ -14,7 +16,7 @@ class ProfilPage extends StatefulWidget {
 }
 
 class _ProfilPageState extends State<ProfilPage> {
-  double value = 20;
+  double value = 5000;
   int _index = 1;
   @override
   Widget build(BuildContext context) {
@@ -28,15 +30,6 @@ class _ProfilPageState extends State<ProfilPage> {
           style: TextStyle(
               color: Colors.black, fontWeight: FontWeight.bold, fontSize: 30),
         ),
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              Icons.arrow_back_ios_new,
-              color: Colors.black,
-              size: 30,
-            )),
       ),
       // body: Center(
       //   child: Column(
@@ -139,6 +132,13 @@ class _ProfilPageState extends State<ProfilPage> {
         child: Center(
           child: Column(
             children: [
+              SizedBox(
+                height: 20,
+              ),
+              CircleAvatar(
+                radius: 100,
+                backgroundImage: NetworkImage("https://picsum.photos/200/300"),
+              ),
               Padding(
                 padding: const EdgeInsets.only(top: 60.0),
                 child: Row(
@@ -159,7 +159,7 @@ class _ProfilPageState extends State<ProfilPage> {
                 ),
               ),
               SizedBox(
-                height: 140,
+                height: 30,
               ),
               Container(
                 width: 400,
@@ -167,40 +167,94 @@ class _ProfilPageState extends State<ProfilPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 5.0, right: 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.monitor_weight_rounded),
-                          //değer girilcek
-                          Text(context
-                              .watch<UserViewModel>()
-                              .getUser
-                              .weight
-                              .toString()),
-                          SizedBox(
-                            width: 100,
-                          ),
-                          Icon(Icons.account_circle_rounded),
-                          //deper girilcek
-                          Text(context
-                              .watch<UserViewModel>()
-                              .getUser
-                              .height
-                              .toString()),
-                          SizedBox(
-                            width: 100,
-                          ),
-                          Icon(Icons.ac_unit),
-                          //değer girilcek
-                          Text(context
-                              .watch<UserViewModel>()
-                              .getUser
-                              .age
-                              .toString())
-                        ],
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Column(
+                          children: [
+                            Text(
+                              "Weight",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            //değer girilcek
+                            Text(context
+                                .watch<UserViewModel>()
+                                .getUser
+                                .weight
+                                .toString()),
+                            // LinearPercentIndicator(
+                            //   width: 100.0,
+                            //   lineHeight: 8.0,
+                            //   percent: context
+                            //           .watch<UserViewModel>()
+                            //           .getUser
+                            //           .daily_calorie! /
+                            //       2500.toDouble(),
+                            //   progressColor: Color.fromRGBO(35, 125, 60, 0.612),
+                            // ),
+                          ],
+                        ),
+                        SizedBox(
+                          width: 50,
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              "Height",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            // Icon(Icons.account_circle_rounded),
+                            //deper girilcek
+                            Text(context
+                                .watch<UserViewModel>()
+                                .getUser
+                                .height
+                                .toString()),
+                            // LinearPercentIndicator(
+                            //   width: 100.0,
+                            //   lineHeight: 8.0,
+                            //   percent: context
+                            //           .watch<UserViewModel>()
+                            //           .getUser
+                            //           .height! /
+                            //       1000.toDouble(),
+                            //   progressColor: Color.fromRGBO(35, 125, 60, 0.612),
+                            // ),
+                          ],
+                        ),
+                        SizedBox(
+                          width: 50,
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              "Age",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            //değer girilcek
+                            Text(context
+                                .watch<UserViewModel>()
+                                .getUser
+                                .age
+                                .toString())
+                            // LinearPercentIndicator(
+                            //   width: 100.0,
+                            //   lineHeight: 8.0,
+                            //   percent: 0.2,
+                            //   progressColor: Color.fromRGBO(35, 125, 60, 0.612),
+                            // ),
+                          ],
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -230,22 +284,23 @@ class _ProfilPageState extends State<ProfilPage> {
                             fontSize: 20),
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
                     Center(
                       child: CircularPercentIndicator(
                         radius: 50.0,
                         lineWidth: 13.0,
                         animation: true,
-                        percent: 1,
+                        percent: context
+                                .watch<UserViewModel>()
+                                .getUser
+                                .daily_calorie! /
+                            2500.toDouble(),
                         center: Text(
                           "Kalori",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 10.0),
                         ),
                         circularStrokeCap: CircularStrokeCap.round,
-                        progressColor: Colors.yellow,
+                        progressColor: Color.fromARGB(255, 240, 239, 224),
                       ),
                     ),
                   ],
@@ -256,13 +311,18 @@ class _ProfilPageState extends State<ProfilPage> {
         ),
       ),
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromRGBO(248, 245, 228, 1),
         index: _index,
-        color: Color.fromARGB(255, 255, 139, 93),
+        color: Color.fromRGBO(35, 125, 60, 0.612),
         animationDuration: Duration(microseconds: 200),
         onTap: (i) {
           setState(() {
             _index = i;
+            if (_index == 1) {
+              return;
+            } else
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (context) => HomePage()));
           });
         },
         items: [

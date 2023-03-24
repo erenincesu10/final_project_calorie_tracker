@@ -18,7 +18,8 @@ List<String> list = ["Kahvalti", "Launch", "Dinner"];
 List idler = [];
 
 class _SearchPageState extends State<SearchPage> {
-  var dropdownValue = list.first;
+  List<String> list = ["davut", "babuz"];
+  var dropdownValue;
   Services services = Services();
   TextEditingController _searchController = TextEditingController();
   @override
@@ -70,14 +71,15 @@ class _SearchPageState extends State<SearchPage> {
                         width: 18,
                       ),
                       suffix: TextButton(
-                        child: Text(
-                          "Ara",
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        onPressed: () => context
-                            .read<FoodViewModel>()
-                            .setFoodList(_searchController.text),
-                      )),
+                          child: Text(
+                            "Ara",
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          onPressed: () {
+                            context
+                                .read<FoodViewModel>()
+                                .setFoodList(_searchController.text);
+                          })),
                 ),
               ),
             ),
@@ -192,10 +194,14 @@ class _SearchPageState extends State<SearchPage> {
                                                 value: dropdownValue,
                                                 icon:
                                                     Icon(Icons.arrow_drop_down),
-                                                items: list.map((String items) {
-                                                  return DropdownMenuItem(
-                                                    value: items,
-                                                    child: Text(items),
+                                                items: list.map<
+                                                        DropdownMenuItem<
+                                                            String>>(
+                                                    (String value) {
+                                                  return DropdownMenuItem<
+                                                      String>(
+                                                    value: value,
+                                                    child: Text(value),
                                                   );
                                                 }).toList(),
                                                 onChanged: (value) {

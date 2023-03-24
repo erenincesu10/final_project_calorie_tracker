@@ -1,5 +1,6 @@
 import 'dart:ffi';
-
+import 'package:calorie_tracker/components/bottom_nav_bar.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:calorie_tracker/components/HomePage/breakfast_page.dart';
 import 'package:calorie_tracker/components/HomePage/dinner_card.dart';
 import 'package:calorie_tracker/components/HomePage/lunch_card.dart';
@@ -24,19 +25,20 @@ class _HomePageState extends State<HomePage> {
   int _index = 0;
   @override
   Widget build(BuildContext context) {
-    double value = 1500;
+    double value = 1200;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color.fromRGBO(248, 245, 228, 1),
       body: Column(
         children: [
           Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height * 0.58,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(60),
-                    bottomRight: Radius.circular(60)),
-                color: Color.fromARGB(255, 255, 139, 93)),
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(60),
+                  bottomRight: Radius.circular(60)),
+              color: Color.fromRGBO(35, 125, 60, 0.612),
+            ),
             child: SafeArea(
               child: Center(
                 child: Column(
@@ -49,41 +51,45 @@ class _HomePageState extends State<HomePage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => SearchPage()));
+                                      builder: (context) =>
+                                          const SearchPage()));
                             },
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.search,
                               color: Colors.white,
                               size: 30,
                             )),
                       ],
                     ),
-                    Center(
+                    const Center(
                       child: Text(
                         "Today",
                         style: TextStyle(
+                            fontFamily: "Lato",
                             color: Colors.white,
                             fontSize: 45,
                             fontWeight: FontWeight.bold),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 50,
                     ),
                     Column(
                       children: [
                         CircularPercentIndicator(
                           radius: 120.0,
-                          lineWidth: 13.0,
+                          lineWidth: 20.0,
                           animation: true,
                           percent: 0.7,
                           center: Text(
                             "${value.toInt().toString()} Kalori",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20.0),
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 22.0,
+                                color: Color.fromARGB(255, 246, 246, 246)),
                           ),
                           circularStrokeCap: CircularStrokeCap.round,
-                          progressColor: Colors.yellow,
+                          progressColor: Color.fromARGB(255, 240, 239, 224),
                         ),
                       ],
                     ),
@@ -92,32 +98,37 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
           ),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
-              children: [BreakFastCard(), LunchCard(), DinnerCard()],
+              children: const [
+                BreakFastCard(),
+                LunchCard(),
+                DinnerCard(),
+              ],
             ),
           )
         ],
       ),
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromRGBO(248, 245, 228, 1),
         index: 0,
-        color: Color.fromARGB(255, 255, 139, 93),
+        color: Color.fromRGBO(35, 125, 60, 0.612),
         animationDuration: Duration(microseconds: 200),
         onTap: (i) {
           setState(() {
             _index = i;
-            if (i == 1) {
-              Navigator.push(context,
+            if (_index == 0) {
+              return;
+            } else
+              Navigator.of(context).pushReplacement(
                   MaterialPageRoute(builder: (context) => ProfilPage()));
-            }
           });
         },
-        items: [ 
+        items: [
           Icon(
             Icons.home,
             color: Colors.white,

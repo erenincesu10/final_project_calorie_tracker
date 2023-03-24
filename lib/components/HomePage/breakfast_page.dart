@@ -16,6 +16,8 @@ class BreakFastCard extends StatefulWidget {
   State<BreakFastCard> createState() => _BreakFastCardState();
 }
 
+List breakfastproduct = ["asdsa"];
+
 class _BreakFastCardState extends State<BreakFastCard> {
   Services services = Services();
   @override
@@ -50,8 +52,8 @@ class _BreakFastCardState extends State<BreakFastCard> {
                       fontFamily: "Montserrat",
                       fontWeight: FontWeight.bold),
                 ),
-                const Text(
-                  "Reccommended: \n751 cals, 9net carbs",
+                Text(
+                  breakfastproduct.toString(),
                   style: TextStyle(
                     fontSize: 10,
                     color: Color.fromARGB(255, 0, 0, 0),
@@ -80,26 +82,14 @@ class _BreakFastCardState extends State<BreakFastCard> {
                       child: Center(
                         child: TextButton(
                           child: Text(
-                            "+ Add Lunch",
+                            "View Breakfast",
                             style: TextStyle(color: Colors.white),
                           ),
                           onPressed: () {
-                            services.getDailyFood(
-                                context.read<UserViewModel>().getCurrentUserId!,
-                                "Kahvalti");
-                            // Food? food = context.read<FoodViewModel>().getFood;
-                            // print(food);
-                            // print(services.getDailyFood(
-                            //     context
-                            //         .read<
-                            //             UserViewModel>()
-                            //         .getCurrentUserId!,
-                            //     "Kahvalti",
-                            //     food!.id!));
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (context) => SearchPage()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SearchPage()));
                           },
                         ),
                       ),

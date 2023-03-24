@@ -1,3 +1,4 @@
+import 'package:calorie_tracker/view/LunchPage/lunch_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -10,6 +11,9 @@ class LunchCard extends StatefulWidget {
   @override
   State<LunchCard> createState() => _LunchCardState();
 }
+
+
+List lunch = [];
 
 class _LunchCardState extends State<LunchCard> {
   @override
@@ -44,8 +48,8 @@ class _LunchCardState extends State<LunchCard> {
                       fontFamily: "Montserrat",
                       fontWeight: FontWeight.bold),
                 ),
-                const Text(
-                  "Reccommended: \n751 cals, 9net carbs",
+                 Text(
+                 lunch.toString(),
                   style: TextStyle(
                     fontSize: 10,
                     color: Color.fromARGB(255, 0, 0, 0),
@@ -74,14 +78,14 @@ class _LunchCardState extends State<LunchCard> {
                       child: Center(
                         child: TextButton(
                           child: Text(
-                            "+ Add Lunch",
+                            "View Lunch",
                             style: TextStyle(color: Colors.white),
                           ),
                           onPressed: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => SearchPage()));
+                                    builder: (context) => LunchPageView()));
                           },
                         ),
                       ),
