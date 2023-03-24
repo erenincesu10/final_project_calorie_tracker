@@ -16,7 +16,7 @@ class ProfilPage extends StatefulWidget {
 }
 
 class _ProfilPageState extends State<ProfilPage> {
-  double value = 20;
+  double value = 5000;
   int _index = 1;
   @override
   Widget build(BuildContext context) {
@@ -172,77 +172,88 @@ class _ProfilPageState extends State<ProfilPage> {
                       children: [
                         Column(
                           children: [
-                            Text("Weight"),
+                            Text(
+                              "Weight",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
                             SizedBox(
                               height: 10,
                             ),
-                            LinearPercentIndicator(
-                              width: 100.0,
-                              lineHeight: 8.0,
-                              percent: 0.2,
-                              progressColor: Color.fromRGBO(35, 125, 60, 0.612),
-                            ),
+                            //değer girilcek
+                            Text(context
+                                .watch<UserViewModel>()
+                                .getUser
+                                .weight
+                                .toString()),
+                            // LinearPercentIndicator(
+                            //   width: 100.0,
+                            //   lineHeight: 8.0,
+                            //   percent: context
+                            //           .watch<UserViewModel>()
+                            //           .getUser
+                            //           .daily_calorie! /
+                            //       2500.toDouble(),
+                            //   progressColor: Color.fromRGBO(35, 125, 60, 0.612),
+                            // ),
                           ],
                         ),
-                        // Icon(Icons.monitor_weight_rounded),
-                        // //değer girilcek
-                        // Text(context
-                        //     .watch<UserViewModel>()
-                        //     .getUser
-                        //     .weight
-                        //     .toString()),
                         SizedBox(
                           width: 50,
                         ),
                         Column(
                           children: [
-                            Text("Height"),
+                            Text(
+                              "Height",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
                             SizedBox(
                               height: 10,
                             ),
-                            LinearPercentIndicator(
-                              width: 100.0,
-                              lineHeight: 8.0,
-                              percent: context
-                                      .watch<UserViewModel>()
-                                      .getUser
-                                      .height! /
-                                  1000.toDouble(),
-                              progressColor: Color.fromRGBO(35, 125, 60, 0.612),
-                            ),
+                            // Icon(Icons.account_circle_rounded),
+                            //deper girilcek
+                            Text(context
+                                .watch<UserViewModel>()
+                                .getUser
+                                .height
+                                .toString()),
+                            // LinearPercentIndicator(
+                            //   width: 100.0,
+                            //   lineHeight: 8.0,
+                            //   percent: context
+                            //           .watch<UserViewModel>()
+                            //           .getUser
+                            //           .height! /
+                            //       1000.toDouble(),
+                            //   progressColor: Color.fromRGBO(35, 125, 60, 0.612),
+                            // ),
                           ],
                         ),
-                        // Icon(Icons.account_circle_rounded),
-                        // //deper girilcek
-                        // Text(context
-                        //     .watch<UserViewModel>()
-                        //     .getUser
-                        //     .height
-                        //     .toString()),
                         SizedBox(
                           width: 50,
                         ),
                         Column(
                           children: [
-                            Text("Age"),
+                            Text(
+                              "Age",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
                             SizedBox(
                               height: 10,
                             ),
-                            LinearPercentIndicator(
-                              width: 100.0,
-                              lineHeight: 8.0,
-                              percent: 0.2,
-                              progressColor: Color.fromRGBO(35, 125, 60, 0.612),
-                            ),
+                            //değer girilcek
+                            Text(context
+                                .watch<UserViewModel>()
+                                .getUser
+                                .age
+                                .toString())
+                            // LinearPercentIndicator(
+                            //   width: 100.0,
+                            //   lineHeight: 8.0,
+                            //   percent: 0.2,
+                            //   progressColor: Color.fromRGBO(35, 125, 60, 0.612),
+                            // ),
                           ],
                         ),
-                        // Icon(Icons.ac_unit),
-                        // //değer girilcek
-                        // Text(context
-                        //     .watch<UserViewModel>()
-                        //     .getUser
-                        //     .age
-                        //     .toString())
                       ],
                     ),
                   ],
@@ -278,7 +289,11 @@ class _ProfilPageState extends State<ProfilPage> {
                         radius: 50.0,
                         lineWidth: 13.0,
                         animation: true,
-                        percent: 1,
+                        percent: context
+                                .watch<UserViewModel>()
+                                .getUser
+                                .daily_calorie! /
+                            2500.toDouble(),
                         center: Text(
                           "Kalori",
                           style: TextStyle(

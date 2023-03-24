@@ -21,12 +21,11 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-
 class _HomePageState extends State<HomePage> {
   int _index = 0;
   @override
   Widget build(BuildContext context) {
-    double value = 1530;
+    double value = 1200;
     return Scaffold(
       backgroundColor: Color.fromRGBO(248, 245, 228, 1),
       body: Column(
