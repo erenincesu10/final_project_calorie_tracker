@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 class UserViewModel extends ChangeNotifier {
   String _currentUserId = "";
   User? _user;
-  void setCurrentUserId(String currentUserId) {
+  setCurrentUserId(String currentUserId) {
     _currentUserId = currentUserId;
     notifyListeners();
   }
@@ -17,9 +17,10 @@ class UserViewModel extends ChangeNotifier {
   Services services = Services();
 
   Future<User?> setUser() async {
-    _user = await services.getUser(_currentUserId);
+    _user = await services.getUser("4BBw4glPF3dggBxJ6B898IJtMhk1");
     notifyListeners();
   }
 
   User get getUser => _user!;
 }
+ 
