@@ -180,12 +180,12 @@ Uri updateFoodId(String localId, date, branch,id) => Uri.parse(
   Future<User?> getUser(String endpoint) async {
     http.Response response = await http.get(postUserUrl(endpoint),
         headers: {'Content-Type': "application/json"});
-
+    print(postUserUrl(endpoint));
     if (response.statusCode >= 200 && response.statusCode <= 300) {
       var data = response.body;
       //print(jsonDecode(data));
       print(response.statusCode);
-      //return User.fromJson(data);
+      User.fromJson(data);
     } else {
       print(response.statusCode);
     }

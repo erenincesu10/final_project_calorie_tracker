@@ -19,14 +19,7 @@ class _LunchPageViewState extends State<LunchPageView> {
   Services services = Services();
   String dateTime =
       "${DateTime.now().day}_${DateTime.now().month}_${DateTime.now().year}";
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-      for(var i = 0;i < widget.foods.length;i++)
-        total = total + widget.foods[i]["calories"];
 
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

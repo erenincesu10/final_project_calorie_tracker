@@ -19,15 +19,7 @@ class _BreakFastPageViewState extends State<BreakFastPageView> {
       "${DateTime.now().day}_${DateTime.now().month}_${DateTime.now().year}";  
   Services services = Services();
   double breakfast_total_calorie = 0;
-  @override
-  void initState() {
-    // TODO: implement initState
 
-      for(var i = 0;i < widget.foods.length;i++){
-        
-      }
-      super.initState();
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
