@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(60),
                     bottomRight: Radius.circular(60)),
-                color: Color.fromARGB(255, 226, 100, 50)),
+                color: Color.fromARGB(255, 255, 139, 93)),
             child: SafeArea(
               child: Center(
                 child: Column(
@@ -106,19 +106,18 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Colors.white,
         index: 0,
-        color: Color.fromARGB(255, 226, 100, 50),
+        color: Color.fromARGB(255, 255, 139, 93),
         animationDuration: Duration(microseconds: 200),
         onTap: (i) {
           setState(() {
             _index = i;
-            if (_index == 0) {
-              return;
-            } else
+            if (i == 1) {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => ProfilPage()));
+            }
           });
         },
-        items: [
+        items: [ 
           Icon(
             Icons.home,
             color: Colors.white,

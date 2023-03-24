@@ -1,3 +1,6 @@
+import 'package:calorie_tracker/view/HomePage/home_page.dart';
+import 'package:calorie_tracker/view/ProfilePage/profile_page.dart';
+import 'package:calorie_tracker/view/SearchPage/search_page.dart';
 import 'package:calorie_tracker/view/SplashScreen/splash_screen.dart';
 import 'package:calorie_tracker/view_model/food_view_model.dart';
 import 'package:calorie_tracker/view_model/user_view_model.dart';

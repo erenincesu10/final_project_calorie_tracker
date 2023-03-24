@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
+import '../../view/SearchPage/search_page.dart';
+
 class LunchCard extends StatefulWidget {
   const LunchCard({super.key});
 
@@ -76,7 +78,10 @@ class _LunchCardState extends State<LunchCard> {
                             style: TextStyle(color: Colors.white),
                           ),
                           onPressed: () {
-                            print("object");
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SearchPage()));
                           },
                         ),
                       ),
