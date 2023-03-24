@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:calorie_tracker/models/food_model.dart';
 import 'package:calorie_tracker/models/sign_operations.dart';
 import 'package:calorie_tracker/models/user_model.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class Services {
@@ -25,7 +26,7 @@ class Services {
   Uri postUserUrl(String endpoint) => Uri.parse(
       "https://final-project-f8ca2-default-rtdb.europe-west1.firebasedatabase.app/users/$endpoint.json");
 
-  Future addFood(Food food, String localId, branch) async {
+  Future<String?> addFood(Food food, String localId, branch) async {
     http.Response response = await http.post(
       getFoodUrl(localId, dateTime, branch),
       body: food.toJson(),
@@ -34,6 +35,22 @@ class Services {
     print(getFoodUrl(localId, dateTime, branch));
     if (response.statusCode >= 200 && response.statusCode <= 300) {
       var data = jsonDecode(response.body);
+      food.id = data["name"];
+      return food.id;
+    } else {
+      return null;
+    }
+  }
+
+  Future getDailyFood(String localId, branch) async {
+    http.Response response = await http.get(
+      getFoodUrl(localId, dateTime, branch),
+      headers: {"Content-type": "application/json"},
+    );
+    if (response.statusCode >= 200 && response.statusCode <= 300) {
+      var data = jsonDecode(response.body);
+      var map = data[ValueKey];
+      print(map);
       return data;
     } else {
       return null;

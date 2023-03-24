@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 class Food {
+  String? id;
   String name;
   double calories;
   double serving_size_g;
@@ -9,6 +10,7 @@ class Food {
   double protein_g;
   double carbohydrates_total_g;
   Food({
+    this.id,
     required this.name,
     required this.calories,
     required this.serving_size_g,
@@ -18,6 +20,7 @@ class Food {
   });
 
   Food copyWith({
+    String? id,
     String? name,
     double? calories,
     double? serving_size_g,
@@ -26,6 +29,7 @@ class Food {
     double? carbohydrates_total_g,
   }) {
     return Food(
+      id: id ?? this.id,
       name: name ?? this.name,
       calories: calories ?? this.calories,
       serving_size_g: serving_size_g ?? this.serving_size_g,
@@ -38,6 +42,7 @@ class Food {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'id': id,
       'name': name,
       'calories': calories,
       'serving_size_g': serving_size_g,
@@ -49,6 +54,7 @@ class Food {
 
   factory Food.fromMap(Map<String, dynamic> map) {
     return Food(
+      id: map['id'] != null ? map['id'] as String : null,
       name: map['name'] as String,
       calories: map['calories'] as double,
       serving_size_g: map['serving_size_g'] as double,
@@ -65,14 +71,15 @@ class Food {
 
   @override
   String toString() {
-    return 'Food(name: $name, calories: $calories, serving_size_g: $serving_size_g, fat_total_g: $fat_total_g, protein_g: $protein_g, carbohydrates_total_g: $carbohydrates_total_g)';
+    return 'Food(id: $id, name: $name, calories: $calories, serving_size_g: $serving_size_g, fat_total_g: $fat_total_g, protein_g: $protein_g, carbohydrates_total_g: $carbohydrates_total_g)';
   }
 
   @override
   bool operator ==(covariant Food other) {
     if (identical(this, other)) return true;
 
-    return other.name == name &&
+    return other.id == id &&
+        other.name == name &&
         other.calories == calories &&
         other.serving_size_g == serving_size_g &&
         other.fat_total_g == fat_total_g &&
@@ -82,7 +89,8 @@ class Food {
 
   @override
   int get hashCode {
-    return name.hashCode ^
+    return id.hashCode ^
+        name.hashCode ^
         calories.hashCode ^
         serving_size_g.hashCode ^
         fat_total_g.hashCode ^
