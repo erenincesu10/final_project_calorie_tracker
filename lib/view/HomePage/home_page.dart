@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
   int _index = 0;
   @override
   Widget build(BuildContext context) {
-    double value = 1500;
+    double value = 1530;
     return Scaffold(
       backgroundColor: Color.fromRGBO(248, 245, 228, 1),
       body: Column(
