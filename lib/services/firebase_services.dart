@@ -102,6 +102,20 @@ class Services {
     }
   }
 
+  Future<String?> signInTakeId(SignOperations signOperations) async {
+    http.Response response = await http.post(getSignInUrl(),
+        headers: {"Content-type": "application/json"},
+        body: signOperations.toJson());
+
+    if (response.statusCode >= 200 && response.statusCode <= 300) {
+      var data = jsonDecode(response.body);
+      print(data["localId"]);
+      return data["localId"];
+    } else {
+      return null;
+    }
+  }
+
   Future<User?> postUser(User user, String endpoint) async {
     http.Response response = await http.put(postUserUrl(endpoint),
         body: user.toJson(), headers: {'Content-Type': "application/json"});

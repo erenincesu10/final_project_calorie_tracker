@@ -111,9 +111,13 @@ class _HomePageState extends State<HomePage> {
         onTap: (i) {
           setState(() {
             _index = i;
+            if (i == 1) {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ProfilPage()));
+            }
           });
         },
-        items: [
+        items: [ 
           Icon(
             Icons.home,
             color: Colors.white,
