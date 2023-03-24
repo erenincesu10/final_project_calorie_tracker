@@ -115,23 +115,19 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Color.fromRGBO(248, 245, 228, 1),
         index: 0,
-        color: Color.fromRGBO(35, 125, 60, 0.612),
-        animationDuration: const Duration(microseconds: 200),
+        color: Color.fromARGB(255, 226, 100, 50),
+        animationDuration: Duration(microseconds: 200),
         onTap: (i) {
           setState(() {
             _index = i;
             if (_index == 0) {
               return;
             } else
-              // ignore: curly_braces_in_flow_control_structures
-              Navigator.push(
-                  context,
-                  PageTransition(
-                      type: PageTransitionType.leftToRight,
-                      child: const ProfilPage()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ProfilPage()));
           });
         },
-        items: const [
+        items: [
           Icon(
             Icons.home,
             color: Colors.white,

@@ -12,7 +12,11 @@ class User {
   double? total_fat_g;
   double? total_protein_g;
   double? carbohydrates_total_g;
+  int? height;
+  int? weight;
   List dailyEats;
+  String? gender;
+  int? daily_calorie;
   User({
     this.id,
     required this.name,
@@ -22,7 +26,11 @@ class User {
     this.total_fat_g,
     this.total_protein_g,
     this.carbohydrates_total_g,
+    this.height,
+    this.weight,
     required this.dailyEats,
+    this.gender,
+    this.daily_calorie,
   });
 
   User copyWith({
@@ -34,7 +42,11 @@ class User {
     double? total_fat_g,
     double? total_protein_g,
     double? carbohydrates_total_g,
+    int? height,
+    int? weight,
     List? dailyEats,
+    String? gender,
+    int? daily_calorie,
   }) {
     return User(
       id: id ?? this.id,
@@ -46,7 +58,11 @@ class User {
       total_protein_g: total_protein_g ?? this.total_protein_g,
       carbohydrates_total_g:
           carbohydrates_total_g ?? this.carbohydrates_total_g,
+      height: height ?? this.height,
+      weight: weight ?? this.weight,
       dailyEats: dailyEats ?? this.dailyEats,
+      gender: gender ?? this.gender,
+      daily_calorie: daily_calorie ?? this.daily_calorie,
     );
   }
 
@@ -60,7 +76,11 @@ class User {
       'total_fat_g': total_fat_g,
       'total_protein_g': total_protein_g,
       'carbohydrates_total_g': carbohydrates_total_g,
+      'height': height,
+      'weight': weight,
       'dailyEats': dailyEats,
+      'gender': gender,
+      'daily_calorie': daily_calorie,
     };
   }
 
@@ -80,7 +100,12 @@ class User {
       carbohydrates_total_g: map['carbohydrates_total_g'] != null
           ? map['carbohydrates_total_g'] as double
           : null,
+      height: map['height'] != null ? map['height'] as int : null,
+      weight: map['weight'] != null ? map['weight'] as int : null,
       dailyEats: List.from((map['dailyEats'] as List)),
+      gender: map['gender'] != null ? map['gender'] as String : null,
+      daily_calorie:
+          map['daily_calorie'] != null ? map['daily_calorie'] as int : null,
     );
   }
 
@@ -91,7 +116,7 @@ class User {
 
   @override
   String toString() {
-    return 'User(id: $id, name: $name, lastName: $lastName, age: $age, total_calorie: $total_calorie, total_fat_g: $total_fat_g, total_protein_g: $total_protein_g, carbohydrates_total_g: $carbohydrates_total_g, dailyEats: $dailyEats)';
+    return 'User(id: $id, name: $name, lastName: $lastName, age: $age, total_calorie: $total_calorie, total_fat_g: $total_fat_g, total_protein_g: $total_protein_g, carbohydrates_total_g: $carbohydrates_total_g, height: $height, weight: $weight, dailyEats: $dailyEats, gender: $gender, daily_calorie: $daily_calorie)';
   }
 
   @override
@@ -106,7 +131,11 @@ class User {
         other.total_fat_g == total_fat_g &&
         other.total_protein_g == total_protein_g &&
         other.carbohydrates_total_g == carbohydrates_total_g &&
-        listEquals(other.dailyEats, dailyEats);
+        other.height == height &&
+        other.weight == weight &&
+        listEquals(other.dailyEats, dailyEats) &&
+        other.gender == gender &&
+        other.daily_calorie == daily_calorie;
   }
 
   @override
@@ -119,6 +148,10 @@ class User {
         total_fat_g.hashCode ^
         total_protein_g.hashCode ^
         carbohydrates_total_g.hashCode ^
-        dailyEats.hashCode;
+        height.hashCode ^
+        weight.hashCode ^
+        dailyEats.hashCode ^
+        gender.hashCode ^
+        daily_calorie.hashCode;
   }
 }

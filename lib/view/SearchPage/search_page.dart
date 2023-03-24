@@ -13,7 +13,10 @@ class SearchPage extends StatefulWidget {
   State<SearchPage> createState() => _SearchPageState();
 }
 
+List<String> list = ["davut", "babuz"];
+
 class _SearchPageState extends State<SearchPage> {
+  var dropdownValue = list.first;
   Services services = Services();
   TextEditingController _searchController = TextEditingController();
   @override
@@ -46,7 +49,7 @@ class _SearchPageState extends State<SearchPage> {
               height: 60,
               width: MediaQuery.of(context).size.width,
               color: Colors.white,
-              child: Flexible(
+              child: Expanded(
                 flex: 1,
                 child: TextField(
                   controller: _searchController,
