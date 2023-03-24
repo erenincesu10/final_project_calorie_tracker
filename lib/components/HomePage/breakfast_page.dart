@@ -1,8 +1,13 @@
-import 'package:calorie_tracker/view/BreakFastPage/breakfast_page.dart';
+import 'package:calorie_tracker/models/food_model.dart';
+import 'package:calorie_tracker/models/user_model.dart';
+import 'package:calorie_tracker/services/firebase_services.dart';
 import 'package:calorie_tracker/view/SearchPage/search_page.dart';
+import 'package:calorie_tracker/view_model/food_view_model.dart';
+import 'package:calorie_tracker/view_model/user_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:provider/provider.dart';
 
 class BreakFastCard extends StatefulWidget {
   const BreakFastCard({super.key});
@@ -14,6 +19,7 @@ class BreakFastCard extends StatefulWidget {
 List breakfastproduct = ["asdsa"];
 
 class _BreakFastCardState extends State<BreakFastCard> {
+  Services services = Services();
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -83,7 +89,7 @@ class _BreakFastCardState extends State<BreakFastCard> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => BreakFastPageView()));
+                                    builder: (context) => SearchPage()));
                           },
                         ),
                       ),

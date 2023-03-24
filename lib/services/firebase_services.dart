@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:calorie_tracker/models/food_model.dart';
 import 'package:calorie_tracker/models/sign_operations.dart';
 import 'package:calorie_tracker/models/user_model.dart';
@@ -12,6 +11,9 @@ class Services {
 
   Uri getFoodUrl(String localId, date, branch) => Uri.parse(
       "https://final-project-f8ca2-default-rtdb.europe-west1.firebasedatabase.app/users/$localId/$dateTime/$branch.json");
+
+  Uri getDailyFoodUrl(String localId, date, branch) => Uri.parse(
+      "https://final-project-f8ca2-default-rtdb.europe-west1.firebasedatabase.app/users/$localId/$dateTime/$branch/.json");
 
   Uri getUrl(String endpoint) =>
       Uri.parse("https://api.calorieninjas.com/v1/nutrition?query=$endpoint");
@@ -26,50 +28,48 @@ class Services {
   Uri postUserUrl(String endpoint) => Uri.parse(
       "https://final-project-f8ca2-default-rtdb.europe-west1.firebasedatabase.app/users/$endpoint.json");
 
-  Future<String?> addFood(Food food, String localId, branch) async {
+  Future addFood(Food? food, String localId, branch, List idler) async {
     http.Response response = await http.post(
       getFoodUrl(localId, dateTime, branch),
-      body: food.toJson(),
+      body: food!.toJson(),
       headers: {"Content-type": "application/json"},
     );
-    print(getFoodUrl(localId, dateTime, branch));
+    //print(getFoodUrl(localId, dateTime, branch));
     if (response.statusCode >= 200 && response.statusCode <= 300) {
       var data = jsonDecode(response.body);
       food.id = data["name"];
-      return food.id;
+      print(food.id);
     } else {
       return null;
     }
   }
 
-  Future getDailyFood(String localId, branch) async {
+  Future getDailyFood(String localId, String branch) async {
     http.Response response = await http.get(
-      getFoodUrl(localId, dateTime, branch),
+      getDailyFoodUrl(localId, dateTime, branch),
       headers: {"Content-type": "application/json"},
     );
     if (response.statusCode >= 200 && response.statusCode <= 300) {
       var data = jsonDecode(response.body);
-      var map = data[ValueKey];
-      print(map);
-      return data;
+      for (var key in data.keys) {
+        print(data[key]);
+      }
     } else {
       return null;
     }
   }
 
-  Future<List<Food?>> getFood(String endpoint) async {
+  Future<Food?> getFood(String endpoint) async {
     http.Response response = await http.get(
       getUrl(endpoint),
       headers: {'X-Api-Key': 'rzI75oamqZSr679+L1/mlQ==T7ErsIp7bZfkKNUY'},
     );
 
-    List<Food> foods = [];
-
     if (response.statusCode >= 200 && response.statusCode < 300) {
       var data = jsonDecode(response.body);
       List map = data["items"];
       if (map.length == 0) {
-        foods = [];
+        food = null;
       } else {
         food = Food(
             name: map[0]["name"],
@@ -78,25 +78,9 @@ class Services {
             fat_total_g: map[0]["fat_total_g"],
             protein_g: map[0]["protein_g"],
             carbohydrates_total_g: map[0]["carbohydrates_total_g"]);
-        foods.add(food!);
+        return food;
       }
     }
-
-    // if (response.statusCode >= 200 && response.statusCode < 300) {
-    //   var data = jsonDecode(response.body);
-    //   food = Food(
-    //       name: data["items"][0]["name"],
-    //       calories: data["items"][0]["calories"],
-    //       serving_size_g: data["items"][0]["serving_size_g"],
-    //       fat_total_g: data["items"][0]["fat_total_g"],
-    //       protein_g: data["items"][0]["protein_g"],
-    //       carbohydrates_total_g: data["items"][0]["carbohydrates_total_g"]);
-    //   print(food);
-    //   return food;
-    // } else {
-    //   return null;
-    // }
-    return foods;
   }
 
   Future create(SignOperations signOperations) async {

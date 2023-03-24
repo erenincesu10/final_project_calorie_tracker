@@ -14,6 +14,9 @@ class SearchPage extends StatefulWidget {
   State<SearchPage> createState() => _SearchPageState();
 }
 
+List<String> list = ["Kahvalti", "Launch", "Dinner"];
+List idler = [];
+
 class _SearchPageState extends State<SearchPage> {
   List<String> list = ["davut", "babuz"];
   var dropdownValue;
@@ -88,7 +91,7 @@ class _SearchPageState extends State<SearchPage> {
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height * 0.5,
-                  child: context.watch<FoodViewModel>().getList.isEmpty
+                  child: context.watch<FoodViewModel>().getFood == null
                       ? Container(
                           width: MediaQuery.of(context).size.width * 0.4,
                           height: 50,
@@ -110,13 +113,13 @@ class _SearchPageState extends State<SearchPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                  "${context.watch<FoodViewModel>().getList[0]!.name} (100g)"),
+                                  "${context.watch<FoodViewModel>().getFood!.name}"),
                               SizedBox(
                                 height: 5,
                               ),
                               Text(context
                                   .watch<FoodViewModel>()
-                                  .getList[0]!
+                                  .getFood!
                                   .calories
                                   .toString()),
                               SizedBox(
@@ -135,7 +138,7 @@ class _SearchPageState extends State<SearchPage> {
                                       ),
                                       Text(context
                                           .watch<FoodViewModel>()
-                                          .getList[0]!
+                                          .getFood!
                                           .fat_total_g
                                           .toString()),
                                     ],
@@ -153,7 +156,7 @@ class _SearchPageState extends State<SearchPage> {
                                       ),
                                       Text(context
                                           .watch<FoodViewModel>()
-                                          .getList[0]!
+                                          .getFood!
                                           .protein_g
                                           .toString()),
                                     ],
@@ -171,7 +174,7 @@ class _SearchPageState extends State<SearchPage> {
                                       ),
                                       Text(context
                                           .watch<FoodViewModel>()
-                                          .getList[0]!
+                                          .getFood!
                                           .carbohydrates_total_g
                                           .toString()),
                                     ],
@@ -209,30 +212,24 @@ class _SearchPageState extends State<SearchPage> {
                                               ),
                                               actions: [
                                                 TextButton(
-                                                    onPressed: () {
-                                                      services.getDailyFood(
-                                                          context
-                                                              .read<
-                                                                  UserViewModel>()
-                                                              .getCurrentUserId!,
-                                                          "Kahvalti");
+                                                    onPressed: () async {
                                                       Navigator.pop(
                                                           context, 'Cancel');
                                                     },
                                                     child: Text("Cancel")),
                                                 TextButton(
-                                                    onPressed: () {
+                                                    onPressed: () async {
                                                       Food? food = context
                                                           .read<FoodViewModel>()
-                                                          .getList[0];
+                                                          .getFood;
                                                       String? id = context
                                                           .read<UserViewModel>()
                                                           .getCurrentUserId!;
                                                       print(food!.toJson());
                                                       print(id);
-
                                                       services.addFood(food, id,
-                                                          dropdownValue);
+                                                          dropdownValue, idler);
+
                                                       Navigator.pop(
                                                           context, 'OK');
                                                       //EkleProvider
