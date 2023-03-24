@@ -10,6 +10,8 @@ class BreakFastCard extends StatefulWidget {
   State<BreakFastCard> createState() => _BreakFastCardState();
 }
 
+List breakfastproduct = ["asdsa"];
+
 class _BreakFastCardState extends State<BreakFastCard> {
   @override
   Widget build(BuildContext context) {
@@ -45,8 +47,8 @@ class _BreakFastCardState extends State<BreakFastCard> {
                       fontFamily: "Montserrat",
                       fontWeight: FontWeight.bold),
                 ),
-                const Text(
-                  "Reccommended: \n751 cals, 9net carbs",
+                Text(
+                  breakfastproduct.toString(),
                   style: TextStyle(
                     fontSize: 10,
                     color: Color.fromARGB(255, 0, 0, 0),
@@ -74,7 +76,7 @@ class _BreakFastCardState extends State<BreakFastCard> {
                       ),
                       child: Center(
                         child: TextButton(
-                          child: const Text(
+                          child: Text(
                             "+ Add Lunch",
                             style: TextStyle(color: Colors.white),
                           ),
@@ -82,7 +84,7 @@ class _BreakFastCardState extends State<BreakFastCard> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => SearchPage()));
+                                    builder: (context) => BreakFastCard()));
                           },
                         ),
                       ),

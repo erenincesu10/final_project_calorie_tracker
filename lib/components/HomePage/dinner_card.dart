@@ -1,3 +1,4 @@
+import 'package:calorie_tracker/view/DinnerPage/dinner_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -10,6 +11,8 @@ class DinnerCard extends StatefulWidget {
   @override
   State<DinnerCard> createState() => _DinnerCardState();
 }
+
+List dinner = [];
 
 class _DinnerCardState extends State<DinnerCard> {
   @override
@@ -46,8 +49,9 @@ class _DinnerCardState extends State<DinnerCard> {
                       fontFamily: "Montserrat",
                       fontWeight: FontWeight.bold),
                 ),
-                const Text(
-                  "Reccommended: \n751 cals, 9net carbs",
+                Text(
+                  //providerdan data gelicek
+                  dinner.toString(),
                   style: TextStyle(
                     fontSize: 10,
                     color: Color.fromARGB(255, 0, 0, 0),
@@ -75,7 +79,7 @@ class _DinnerCardState extends State<DinnerCard> {
                       ),
                       child: Center(
                         child: TextButton(
-                          child: const Text(
+                          child: Text(
                             "+ Add Dinner",
                             style: TextStyle(color: Colors.white),
                           ),
@@ -83,7 +87,7 @@ class _DinnerCardState extends State<DinnerCard> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => SearchPage()));
+                                    builder: (context) => DinnerPageView()));
                           },
                         ),
                       ),

@@ -14,10 +14,9 @@ class SearchPage extends StatefulWidget {
   State<SearchPage> createState() => _SearchPageState();
 }
 
-List<String> list = ["Kahvalti", "Launch", "Dinner"];
-
 class _SearchPageState extends State<SearchPage> {
-  var dropdownValue = list.first;
+  List<String> list = ["davut", "babuz"];
+  var dropdownValue;
   Services services = Services();
   // ignore: prefer_final_fields
   TextEditingController _searchController = TextEditingController();
@@ -73,7 +72,7 @@ class _SearchPageState extends State<SearchPage> {
                         child: Icon(Icons.search),
                       ),
                       suffix: TextButton(
-                        child: const Text(
+                        child: Text(
                           "Ara",
                           style: TextStyle(color: Colors.black),
                         ),
@@ -195,10 +194,14 @@ class _SearchPageState extends State<SearchPage> {
                                                 value: dropdownValue,
                                                 icon:
                                                     Icon(Icons.arrow_drop_down),
-                                                items: list.map((String items) {
-                                                  return DropdownMenuItem(
-                                                    value: items,
-                                                    child: Text(items),
+                                                items: list.map<
+                                                        DropdownMenuItem<
+                                                            String>>(
+                                                    (String value) {
+                                                  return DropdownMenuItem<
+                                                      String>(
+                                                    value: value,
+                                                    child: Text(value),
                                                   );
                                                 }).toList(),
                                                 onChanged: (value) {
@@ -210,6 +213,12 @@ class _SearchPageState extends State<SearchPage> {
                                               actions: [
                                                 TextButton(
                                                     onPressed: () {
+                                                      services.getDailyFood(
+                                                          context
+                                                              .read<
+                                                                  UserViewModel>()
+                                                              .getCurrentUserId!,
+                                                          "Kahvalti");
                                                       Navigator.pop(
                                                           context, 'Cancel');
                                                     },
