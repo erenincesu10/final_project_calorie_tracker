@@ -1,3 +1,4 @@
+
 import 'package:calorie_tracker/view/SearchPage/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
