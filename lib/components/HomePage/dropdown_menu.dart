@@ -30,7 +30,7 @@ class _DropDownState extends State<DropDown> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.orange.shade400,
-        title: Text("Liste Ekranı"),
+        title: const Text("Liste Ekranı"),
       ),
       backgroundColor: Colors.orange.shade400,
       body: Center(
@@ -38,33 +38,18 @@ class _DropDownState extends State<DropDown> {
           padding: const EdgeInsets.only(top: 200.0),
           child: Column(
             children: [
-              // Row(
-              //   children: [
-              //     Card(
-              //         child: Column(
-              //       children: [
-              //         ListTile(
-              //           leading: Icon(Icons.abc),
-              //           title: Text("Seçilen yiyecek"),
-              //           subtitle:
-              //               Text("Seçilen yiyecek hakkında detaylı bilgi"),
-              //         ),
-              //       ],
-              //     ))
-              //   ],
-              // ),
               Expanded(
                 child: DropdownButton(
                   value: _selectedVal,
                   items: _foodList
                       .map((e) => DropdownMenuItem(
+                            value: e,
                             child: Text(
                               e,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.orange,
                                   fontWeight: FontWeight.bold),
                             ),
-                            value: e,
                           ))
                       .toList(),
                   onChanged: (val) {

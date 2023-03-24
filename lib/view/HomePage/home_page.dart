@@ -3,17 +3,15 @@ import 'package:page_transition/page_transition.dart';
 import 'package:calorie_tracker/components/HomePage/breakfast_page.dart';
 import 'package:calorie_tracker/components/HomePage/dinner_card.dart';
 import 'package:calorie_tracker/components/HomePage/lunch_card.dart';
-import 'package:calorie_tracker/components/ProfilePage/profile_page.dart';
+import 'package:calorie_tracker/view/ProfilePage/profile_page.dart';
 import 'package:calorie_tracker/view/SearchPage/search_page.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
-import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -26,19 +24,20 @@ class _HomePageState extends State<HomePage> {
   int _index = 0;
   @override
   Widget build(BuildContext context) {
-    double value = 2000;
+    double value = 1500;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color.fromRGBO(248, 245, 228, 1),
       body: Column(
         children: [
           Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height * 0.58,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(60),
-                    bottomRight: Radius.circular(60)),
-                color: Color.fromARGB(255, 226, 100, 50)),
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(60),
+                  bottomRight: Radius.circular(60)),
+              color: Color.fromRGBO(35, 125, 60, 0.612),
+            ),
             child: SafeArea(
               child: Center(
                 child: Column(
@@ -51,41 +50,45 @@ class _HomePageState extends State<HomePage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => SearchPage()));
+                                      builder: (context) =>
+                                          const SearchPage()));
                             },
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.search,
                               color: Colors.white,
                               size: 30,
                             )),
                       ],
                     ),
-                    Center(
+                    const Center(
                       child: Text(
                         "Today",
                         style: TextStyle(
+                            fontFamily: "Lato",
                             color: Colors.white,
                             fontSize: 45,
                             fontWeight: FontWeight.bold),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 50,
                     ),
                     Column(
                       children: [
                         CircularPercentIndicator(
                           radius: 120.0,
-                          lineWidth: 13.0,
+                          lineWidth: 20.0,
                           animation: true,
                           percent: 0.7,
                           center: Text(
                             "${value.toInt().toString()} Kalori",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20.0),
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 22.0,
+                                color: Color.fromARGB(255, 246, 246, 246)),
                           ),
                           circularStrokeCap: CircularStrokeCap.round,
-                          progressColor: Colors.yellow,
+                          progressColor: Color.fromARGB(255, 240, 239, 224),
                         ),
                       ],
                     ),
@@ -94,36 +97,41 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
           ),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
-              children: [BreakFastCard(), LunchCard(), DinnerCard()],
+              children: const [
+                BreakFastCard(),
+                LunchCard(),
+                DinnerCard(),
+              ],
             ),
           )
         ],
       ),
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromRGBO(248, 245, 228, 1),
         index: 0,
-        color: Color.fromARGB(255, 226, 100, 50),
-        animationDuration: Duration(microseconds: 200),
+        color: Color.fromRGBO(35, 125, 60, 0.612),
+        animationDuration: const Duration(microseconds: 200),
         onTap: (i) {
           setState(() {
             _index = i;
             if (_index == 0) {
               return;
             } else
+              // ignore: curly_braces_in_flow_control_structures
               Navigator.push(
                   context,
                   PageTransition(
                       type: PageTransitionType.leftToRight,
-                      child: ProfilPage()));
+                      child: const ProfilPage()));
           });
         },
-        items: [
+        items: const [
           Icon(
             Icons.home,
             color: Colors.white,

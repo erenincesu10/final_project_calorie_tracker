@@ -1,24 +1,31 @@
-import 'package:calorie_tracker/components/HomePage/home_page.dart';
+import 'dart:developer';
+
+import 'package:calorie_tracker/models/sign_operations.dart';
+import 'package:calorie_tracker/services/firebase_services.dart';
+import 'package:calorie_tracker/view/HomePage/home_page.dart';
+import 'package:calorie_tracker/view/LoginPage/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:lottie/lottie.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
-
+  TextEditingController _passwordController2 = TextEditingController();
+  Services services = Services();
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _passwordController2.dispose();
     super.dispose();
   }
 
@@ -29,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          "Login",
+          "Register",
           style: TextStyle(
               color: Colors.black, fontWeight: FontWeight.bold, fontSize: 28),
         ),
@@ -39,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
       body: SingleChildScrollView(
         child: SafeArea(
             child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
               height: 60,
@@ -69,13 +76,26 @@ class _LoginPageState extends State<LoginPage> {
                   child: TextFormField(
                     controller: _passwordController,
                     obscureText: true,
-                    obscuringCharacter: "#",
                     decoration: InputDecoration(
                         labelText: "Parola Giriniz",
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20))),
                   ),
-                )
+                ),
+                SizedBox(
+                  height: 35,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 35, left: 35),
+                  child: TextFormField(
+                    controller: _passwordController2,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                        labelText: "Parolayı yeniden giriniz",
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20))),
+                  ),
+                ),
               ],
             ),
             SizedBox(
@@ -83,34 +103,38 @@ class _LoginPageState extends State<LoginPage> {
             ),
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.8,
-              height: MediaQuery.of(context).size.height * 0.05,
+              height: 50,
               child: OutlinedButton(
                 onPressed: () {
+                  SignOperations infos = SignOperations(
+                      email: _emailController.text,
+                      password: _passwordController.text,
+                      returnToken: true);
+                  services.create(infos);
                   Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) => HomePage()));
                 },
                 child: Text(
-                  "Login",
+                  "Register",
                   style: TextStyle(color: Colors.white),
                 ),
                 style: OutlinedButton.styleFrom(
                     backgroundColor: Colors.green[800], shape: StadiumBorder()),
               ),
             ),
-            Column(
-              children: [
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.1,
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    "Don't have an account? SignUp",
-                    style: TextStyle(
-                        color: Colors.blue, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ],
+            SizedBox(
+              height: 10,
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => LoginPage()));
+              },
+              child: Text(
+                "Do you have an account? Sign in",
+                style:
+                    TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+              ),
             ),
           ],
         )),

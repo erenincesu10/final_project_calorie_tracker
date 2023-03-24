@@ -1,16 +1,19 @@
-import 'package:calorie_tracker/components/ProfilePage/profile_page.dart';
+import 'package:calorie_tracker/view/HomePage/home_page.dart';
 import 'package:calorie_tracker/view/SplashScreen/splash_screen.dart';
+import 'package:calorie_tracker/view_model/food_view_model.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import 'components/HomePage/home_page.dart';
-import 'components/LoginPage/login_page.dart';
+import 'view/LoginPage/login_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  runApp(const MyApp());
+  runApp(MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => FoodViewModel())],
+      child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -21,7 +24,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(),
+      theme: ThemeData(fontFamily: "Lato"),
       home: HomePage(),
     );
   }

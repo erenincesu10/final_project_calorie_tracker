@@ -1,4 +1,3 @@
-import 'package:calorie_tracker/components/HomePage/add_food_page.dart';
 import 'package:calorie_tracker/view/SearchPage/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -52,7 +51,7 @@ class _BreakFastCardState extends State<BreakFastCard> {
                     fontFamily: "Montserrat",
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Padding(
@@ -64,7 +63,7 @@ class _BreakFastCardState extends State<BreakFastCard> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(color: Colors.grey),
-                        gradient: LinearGradient(
+                        gradient: const LinearGradient(
                           colors: [
                             Color(0xff009980),
                             Color.fromARGB(255, 37, 75, 68),
@@ -73,7 +72,7 @@ class _BreakFastCardState extends State<BreakFastCard> {
                       ),
                       child: Center(
                         child: TextButton(
-                          child: Text(
+                          child: const Text(
                             "+ Add Lunch",
                             style: TextStyle(color: Colors.white),
                           ),
