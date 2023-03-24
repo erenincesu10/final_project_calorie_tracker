@@ -86,14 +86,14 @@ class _SearchPageState extends State<SearchPage> {
                     height: MediaQuery.of(context).size.height * 0.5,
                     child: context.watch<FoodViewModel>().getList.isEmpty
                         ? Container(
-                            width: MediaQuery.of(context).size.width * 0.4,
+                            width: MediaQuery.of(context).size.width,
                             height: 50,
                             child: Center(child: Text("Food not found!")))
                         : Container(
                             padding: EdgeInsets.all(6),
                             margin: EdgeInsets.all(100),
                             alignment: Alignment.center,
-                            width: MediaQuery.of(context).size.width * 0.4,
+                            width: MediaQuery.of(context).size.width,
                             height: 200,
                             decoration: BoxDecoration(
                                 gradient: LinearGradient(
