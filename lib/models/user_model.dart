@@ -8,21 +8,21 @@ class User {
   String name;
   String lastName;
   int age;
-  int height;
-  int weight;
+  int? height;
+  int? weight;
   String gender;
-  int daily_calorie;
+  int? daily_calorie;
   User({
     this.id,
     required this.name,
     required this.lastName,
     required this.age,
-    required this.height,
-    required this.weight,
+    this.height,
+    this.weight,
     required this.gender,
-    required this.daily_calorie,
+    this.daily_calorie,
   });
- 
+
 
   User copyWith({
     String? id,
@@ -65,10 +65,10 @@ class User {
       name: map['name'] as String,
       lastName: map['lastName'] as String,
       age: map['age'] as int,
-      height: map['height'] as int,
-      weight: map['weight'] as int,
+      height: map['height'] != null ? map['height'] as int : null,
+      weight: map['weight'] != null ? map['weight'] as int : null,
       gender: map['gender'] as String,
-      daily_calorie: map['daily_calorie'] as int,
+      daily_calorie: map['daily_calorie'] != null ? map['daily_calorie'] as int : null,
     );
   }
 
