@@ -74,10 +74,14 @@ class _SearchPageState extends State<SearchPage> {
                             "Ara",
                             style: TextStyle(color: Colors.black),
                           ),
-                          onPressed: () {
-                            context
+                          onPressed: () async {
+                            showDialog(context: context, builder: (context){
+                              return Center(child: CircularProgressIndicator(),);
+                            });
+                            await context
                                 .read<FoodViewModel>()
                                 .setFoodList(_searchController.text);
+                            Navigator.of(context).pop();
                           })),
                 ),
               ),
@@ -242,3 +246,4 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 }
+

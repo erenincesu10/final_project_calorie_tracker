@@ -1,4 +1,5 @@
 import 'package:calorie_tracker/models/sign_operations.dart';
+import 'package:calorie_tracker/models/user_model.dart';
 import 'package:calorie_tracker/services/firebase_services.dart';
 import 'package:calorie_tracker/view/HomePage/home_page.dart';
 import 'package:calorie_tracker/view/RegisterPage/register_page.dart';
@@ -23,12 +24,12 @@ class _LoginPageState extends State<LoginPage> {
       TextEditingController(text: "123456");
   Services services = Services();
 
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   _emailController.dispose();
+  //   _passwordController.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -110,6 +111,7 @@ class _LoginPageState extends State<LoginPage> {
                     ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text("Invalid email or password")));
                   }
+
                 },
                 child: Text(
                   "Login",

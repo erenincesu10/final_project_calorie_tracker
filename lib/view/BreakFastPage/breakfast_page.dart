@@ -15,6 +15,7 @@ class BreakFastPageView extends StatefulWidget {
 }
 
 class _BreakFastPageViewState extends State<BreakFastPageView> {
+  double total = 0;
   String dateTime =
       "${DateTime.now().day}_${DateTime.now().month}_${DateTime.now().year}";  
   Services services = Services();
@@ -57,12 +58,19 @@ class _BreakFastPageViewState extends State<BreakFastPageView> {
                   Text(widget.foods[index]["calories"].toString()),
                   IconButton(onPressed: ()async{
                     String? id = context.read<UserViewModel>().getCurrentUserId;
-                    await services.deleteFood(id!, dateTime, "Breakfast", widget.foods[index]["id"]);
-                                                    await context.read<FoodViewModel>().setFoods(id, "Breakfast");    
+                    await services.deleteFood(id!, dateTime, "Breakfast", widget.foods[index]["foodId"]);
+                    await context.read<FoodViewModel>().setFoods(id, "Breakfast");    
                                                         setState(()  {
 
                                 widget.foods = context.read<FoodViewModel>().getFoodList!;
                             });
+                              if (widget.foods.length != 0){ 
+                                for(var i = 0;i <= widget.foods.length;i++)
+                                  total = total + widget.foods[i]["calories"];
+                                context.read<FoodViewModel>().setBreakfastCalorie(total) ;
+                                  } else {
+                                    context.read<FoodViewModel>().setBreakfastCalorie(0);
+                                  }         
                   }, icon: Icon(Icons.delete))
                 ],
               ),
