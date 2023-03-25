@@ -276,7 +276,7 @@ class _ProfilPageState extends State<ProfilPage> {
                         context
                             .watch<UserViewModel>()
                             .getUser
-                            .daily_calorie!
+                            .daily_calorie
                             .toString(),
                         style: TextStyle(
                             color: Colors.black,
@@ -292,7 +292,7 @@ class _ProfilPageState extends State<ProfilPage> {
                         percent: context
                                 .watch<UserViewModel>()
                                 .getUser
-                                .daily_calorie! /
+                                .daily_calorie /
                             2500.toDouble(),
                         center: Text(
                           "Kalori",

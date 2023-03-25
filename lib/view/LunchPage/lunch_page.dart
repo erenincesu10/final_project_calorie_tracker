@@ -51,18 +51,26 @@ class _LunchPageViewState extends State<LunchPageView> {
                   Text(widget.foods[index]["name"]),
                   Text(widget.foods[index]["calories"].toString()),
                   IconButton(onPressed: ()async{
+                          showDialog(context: context, builder: (context){
+                            return Center(child: CircularProgressIndicator.adaptive(),);
+                          });
                             String? id = context.read<UserViewModel>().getCurrentUserId;
-                                await services.deleteFood(id!, dateTime, "Lunch", widget.foods[index]["id"]);
+                                await services.deleteFood(id!, dateTime, "Lunch", widget.foods[index]["foodId"]);
                                                     await context.read<FoodViewModel>().setFoods(id, "Lunch");    
                                                         setState(()  {
                                 widget.foods = context.read<FoodViewModel>().getFoodList!;
                                 
 
-
+                            Navigator.of(context).pop();
                             }); 
+                            if (widget.foods.length != 0){ 
                                 for(var i = 0;i <= widget.foods.length;i++)
-                                  total = total + widget.foods[i]["calories"];                               
-                                context.read<FoodViewModel>().setLunchCalorie(total);
+                                  total = total + widget.foods[i]["calories"];
+                                context.read<FoodViewModel>().setLunchCalorie(total) ;
+                                  } else {
+                                    context.read<FoodViewModel>().setLunchCalorie(0);
+                                  }                               
+                                 
                   }, icon: Icon(Icons.delete))
                 ],
               ),

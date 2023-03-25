@@ -5,23 +5,24 @@ import 'package:flutter/foundation.dart';
 
 class User {
   String? id;
-  String? name;
-  String? lastName;
-  int? age;
-  int? height;
-  int? weight;
-  String? gender;
-  int? daily_calorie;
+  String name;
+  String lastName;
+  int age;
+  int height;
+  int weight;
+  String gender;
+  int daily_calorie;
   User({
     this.id,
-    this.name,
-    this.lastName,
-    this.age,
-    this.height,
-    this.weight,
-    this.gender,
-    this.daily_calorie,
+    required this.name,
+    required this.lastName,
+    required this.age,
+    required this.height,
+    required this.weight,
+    required this.gender,
+    required this.daily_calorie,
   });
+ 
 
   User copyWith({
     String? id,
@@ -61,21 +62,19 @@ class User {
   factory User.fromMap(Map<String, dynamic> map) {
     return User(
       id: map['id'] != null ? map['id'] as String : null,
-      name: map['name'] != null ? map['name'] as String : null,
-      lastName: map['lastName'] != null ? map['lastName'] as String : null,
-      age: map['age'] != null ? map['age'] as int : null,
-      height: map['height'] != null ? map['height'] as int : null,
-      weight: map['weight'] != null ? map['weight'] as int : null,
-      gender: map['gender'] != null ? map['gender'] as String : null,
-      daily_calorie:
-          map['daily_calorie'] != null ? map['daily_calorie'] as int : null,
+      name: map['name'] as String,
+      lastName: map['lastName'] as String,
+      age: map['age'] as int,
+      height: map['height'] as int,
+      weight: map['weight'] as int,
+      gender: map['gender'] as String,
+      daily_calorie: map['daily_calorie'] as int,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory User.fromJson(String source) =>
-      User.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory User.fromJson(String source) => User.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
@@ -85,26 +84,27 @@ class User {
   @override
   bool operator ==(covariant User other) {
     if (identical(this, other)) return true;
-
-    return other.id == id &&
-        other.name == name &&
-        other.lastName == lastName &&
-        other.age == age &&
-        other.height == height &&
-        other.weight == weight &&
-        other.gender == gender &&
-        other.daily_calorie == daily_calorie;
+  
+    return 
+      other.id == id &&
+      other.name == name &&
+      other.lastName == lastName &&
+      other.age == age &&
+      other.height == height &&
+      other.weight == weight &&
+      other.gender == gender &&
+      other.daily_calorie == daily_calorie;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-        name.hashCode ^
-        lastName.hashCode ^
-        age.hashCode ^
-        height.hashCode ^
-        weight.hashCode ^
-        gender.hashCode ^
-        daily_calorie.hashCode;
+      name.hashCode ^
+      lastName.hashCode ^
+      age.hashCode ^
+      height.hashCode ^
+      weight.hashCode ^
+      gender.hashCode ^
+      daily_calorie.hashCode;
   }
 }

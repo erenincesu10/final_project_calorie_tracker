@@ -5,8 +5,9 @@ import 'package:calorie_tracker/services/firebase_services.dart';
 import 'package:flutter/material.dart';
 
 class UserViewModel extends ChangeNotifier {
-  String _currentUserId = "";
-  User? _user;
+  String? _currentUserId;
+  User? _user;  Services services = Services();
+
   setCurrentUserId(String currentUserId) {
     _currentUserId = currentUserId;
     notifyListeners();
@@ -14,10 +15,10 @@ class UserViewModel extends ChangeNotifier {
 
   String? get getCurrentUserId => _currentUserId;
 
-  Services services = Services();
+
 
   Future<User?> setUser() async {
-    _user = await services.getUser("4BBw4glPF3dggBxJ6B898IJtMhk1");
+    _user = await services.getUser(_currentUserId!);
     notifyListeners();
   }
 

@@ -18,6 +18,7 @@ class DinnerPageView extends StatefulWidget {
 }
 
 class _DinnerPageViewState extends State<DinnerPageView> {
+  double total = 0;
   Services services = Services();
   String dateTime =
       "${DateTime.now().day}_${DateTime.now().month}_${DateTime.now().year}";
@@ -54,12 +55,18 @@ class _DinnerPageViewState extends State<DinnerPageView> {
                   IconButton(onPressed: () async{
                     print(widget.foods[index]["id"]);
                     String? id = context.read<UserViewModel>().getCurrentUserId;
-                    await services.deleteFood(id!, dateTime, "Dinner", widget.foods[index]["id"]);
+                    await services.deleteFood(id!, dateTime, "Dinner", widget.foods[index]["foodId"]);
                                                     await context.read<FoodViewModel>().setFoods(id, "Dinner");    
                                                         setState(()  {
-
                                 widget.foods = context.read<FoodViewModel>().getFoodList!;
                             });
+                                                        if (widget.foods.length != 0){ 
+                                for(var i = 0;i <= widget.foods.length;i++)
+                                  total = total + widget.foods[i]["calories"];
+                                context.read<FoodViewModel>().setDinnerCalorie(total) ;
+                                  } else {
+                                    context.read<FoodViewModel>().setDinnerCalorie(0);
+                                  }         
                   }, icon: Icon(Icons.delete))
                 ],
               ),

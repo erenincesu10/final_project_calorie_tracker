@@ -83,9 +83,9 @@ class _HomePageState extends State<HomePage> {
                           radius: 120.0,
                           lineWidth: 20.0,
                           animation: true,
-                          percent: (context.watch<FoodViewModel>().getTotalCalorie)!/context.watch<UserViewModel>().getUser.daily_calorie!,
+                          percent: 1,
                           center: Text(
-                            "${context.watch<FoodViewModel>().getTotalCalorie!.round()} Kalori",
+                            "Kalori",
                             style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 22.0,
